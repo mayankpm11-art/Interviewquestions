@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behavioural | PM Drill</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+  <div class="header-top">
+    <div class="title-block">
+      <h1>Behavioural <span>Drill</span></h1>
+      <p>// 60 Questions · 6 Themes · Leadership · Conflict · Failure · Growth · Philosophy</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">60</div><div class="stat-l">Questions</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Themes</div></div>
+    </div>
+  </div>
+  <div style="padding:12px 40px 14px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border);">
+    <a class="nav-link" href="pwc1.html">PwC Part 1</a>
+    <a class="nav-link" href="pwc2.html">PwC Part 2</a>
+    <a class="nav-link" href="epaylater-zebi.html">ePayLater + Zebi</a>
+    <a class="nav-link active" href="behavioural.html">Behavioural</a>
+    <a class="nav-link" href="index.html">← Home</a>
+  </div>
+  <div class="bullet-nav" id="bulletNav"></div>
+</div>
+<div class="main" id="main"></div>
+<script>
+const themes=[
+  {
+    id:"t1",label:"T1 · Tell Me About Yourself",
+    context:"Opening questions about your background, career arc, and why you're here.",
+    questions:[
+      {q:"Tell me about yourself in 2 minutes.",t:"Career"},
+      {q:"Why did you transition from software engineering to product management?",t:"Career"},
+      {q:"Why do you want to move from consulting PM to an in-house PM role?",t:"Career"},
+      {q:"Walk me through your resume — why did you make each career move?",t:"Career"},
+      {q:"Why PwC after your MBA? Why not go directly in-house?",t:"Career"},
+      {q:"What does your ideal PM role look like and why does this role fit?",t:"Career"},
+      {q:"Where do you see yourself in 3 years?",t:"Career"},
+      {q:"What is your biggest strength as a PM and give me a specific example.",t:"Career"},
+      {q:"What is your biggest weakness as a PM and what are you doing about it?",t:"Career"},
+      {q:"Why should we hire you over another PM with more direct in-house experience?",t:"Career"}
+    ],
+    answers:[
+      "Start with the through-line: 'I started as a software engineer at Zebi Data, building blockchain verification systems for 3.5 years. That gave me deep technical grounding — I wrote production code, optimised system throughput, and onboarded enterprise clients. I then did my MBA at MDI Gurgaon where I interned at ePayLater as a PM intern. Since then I've been at PwC India as an embedded Product Manager across 6+ D2C and enterprise engagements — Le Marche, Satya Retail, and PwC's own AI-powered NextGenAudit platform. I'm now looking for an in-house PM role where I can go deeper in one domain and see the long-term impact of my decisions.' Keep it to 90 seconds. End with why this specific role.",
+      "Three reasons: (1) I was already doing PM work as an engineer — writing specs for my own features, talking to clients about requirements, making architecture trade-off decisions. The formal PM role gave me a framework for work I was already doing instinctively. (2) I wanted to own outcomes, not just outputs. As an engineer, I built what I was told. I wanted to define what should be built and why. (3) The MBA was the structured bridge — it gave me the product thinking frameworks to complement the technical foundation I already had.",
+      "Consulting gave me breadth that's genuinely hard to get in-house: 6+ products in 2 years, multiple industries, different user types. But consulting engagements end right when I start to really understand the product and user. I want to close that loop — to see the impact of decisions I made 12 months ago, to build a team's culture, to do product work that compounds over time. In-house also means I'm betting on one product's success, which creates a different kind of ownership and accountability than consulting.",
+      "Each move had a deliberate logic: Zebi Data (3.5 years) — I wanted to build real production systems and understand technology deeply before claiming to manage it. MBA (2 years) — I wanted product thinking frameworks and business exposure I couldn't get by staying in engineering. ePayLater internship — confirmed PM was right for me: I found the combination of user research, data analysis, and stakeholder alignment energising. PwC (current) — the embedded PM consulting model gave me a way to build a PM portfolio rapidly across multiple products. Now: I want the depth that consulting doesn't allow.",
+      "PwC's embedded PM model was the fastest path to a PM portfolio after my MBA. In-house PM roles for freshly-minted MBAs typically start at APM level with limited ownership. PwC's consulting model let me own delivery for full products from day one — writing PRDs, running sprints, owning metrics — because the engagement model requires it. The trade-off: no equity, no long-term product ownership. I accepted that trade-off knowingly and now have 2+ years of real PM experience to show for it.",
+      "Ideal role: a PM position in a company where the product is the business — not a feature team inside a large org. Domain: e-commerce, fintech, or B2B SaaS where I can apply my domain knowledge. Team size: small enough that my decisions matter but large enough to have dedicated engineering and design. Stage: growth-stage where the product-market fit is proven but there's significant feature expansion ahead. This role fits because: [insert specific reasons relevant to the company being interviewed at].",
+      "In 3 years: I want to be either a senior PM leading a product area with 2-3 PMs reporting to me, or a Head of Product in a growth-stage company. The specific outcome I'm targeting: shipping a product that demonstrably moves a business metric I care about (conversion, retention, activation) and building a PM practice where the team can take calculated risks and learn from failures. I'm also actively building a side project (automated job finder) which I see as both a portfolio piece and a way to keep my 0-to-1 product skills sharp.",
+      "Genuine strength: operating at the intersection of technical and business. I can read a system design diagram and understand the trade-offs, and I can talk to a CFO about ROI in the same day. Example: at Le Marche, when engineering said the server-side GA4 implementation would take 3 weeks, I understood exactly what that involved (GTM server container setup, backend event emission, parallel validation) and could push back intelligently on scope — we isolated purchase events only (not all events) and got it done in 2 weeks. Most PMs can't have that conversation.",
+      "Genuine weakness: I sometimes move too fast to execution before ensuring all stakeholders are fully aligned. Specific example: at Le Marche I moved a feature into development before getting explicit sign-off from the operations stakeholder who then flagged issues during UAT requiring rework. What I've done about it: built a sign-off checklist into my pre-sprint process — any feature above medium complexity requires explicit written confirmation from all impacted stakeholders before engineering begins. It adds 3-5 days but eliminates late-stage rework.",
+      "I bring two things most domain-specific in-house PMs don't have together: (1) Genuine technical credibility — I've shipped production code. When I spec a feature, engineers read it differently. Fewer clarification cycles, more trust in prioritisation calls. (2) Cross-domain pattern recognition — 6+ products in 2 years means I've seen the same problem (checkout friction, inventory stockout, partner adoption) solved 3 different ways and know which approach works in which context. Domain experience can be learned in 3-6 months. Engineering credibility and pattern recognition across products take years."
+    ]
+  },
+  {
+    id:"t2",label:"T2 · Stakeholder & Conflict",
+    context:"Questions about managing stakeholders, conflict, and influence without authority.",
+    questions:[
+      {q:"Tell me about a time you disagreed with a stakeholder and how you handled it.",t:"Leadership"},
+      {q:"Describe a situation where you had to manage conflicting stakeholder priorities.",t:"Leadership"},
+      {q:"Tell me about a time you had to influence without formal authority.",t:"Leadership"},
+      {q:"How do you handle a stakeholder who keeps changing requirements mid-sprint?",t:"Leadership"},
+      {q:"Describe a time when you had to say no to a stakeholder's feature request.",t:"Leadership"},
+      {q:"Tell me about a time when you had to deliver bad news to a client or senior stakeholder.",t:"Leadership"},
+      {q:"How do you build trust with a new engineering team quickly?",t:"Leadership"},
+      {q:"Describe a situation where you had to get alignment across multiple teams who disagreed.",t:"Leadership"},
+      {q:"Tell me about a time when your recommendation was rejected. What did you do?",t:"Leadership"},
+      {q:"How do you manage a stakeholder who has more authority than you but less context?",t:"Leadership"}
+    ],
+    answers:[
+      "During the Le Marche engagement, the business stakeholder wanted to add a loyalty points programme to the festive sprint — 4 weeks before Diwali. My position: loyalty programmes require careful design (incentive structure, fraud prevention, attribution) and rushing it would produce a broken experience that damages trust. The stakeholder argued urgency — festive is when acquisition cost is lowest. My approach: (1) Acknowledged the strategic logic. (2) Presented the specific risk with data — 3 examples of rushed loyalty programme launches that drove up tech debt and had to be rebuilt. (3) Proposed a middle path: launch a simple 'share this product' feature (no complex incentive engine) in 1 week, build the proper loyalty programme for the next season with proper lead time. We aligned on this. Simple version launched, drove some sharing, and we built the real version with 3 months of runway.",
+      "At Satya Retail: the sales leadership wanted the FoS platform to include a full CRM (contact management, deal pipeline) in addition to the order capture and scheme management I was building. The IT team thought CRM was out of scope and would delay the order capture launch by 3 months. My approach: (1) Mapped each stakeholder's underlying interest: sales leadership wanted visibility into retailer relationships (the CRM was a means to that end, not the end itself). IT wanted a clean scope and on-time delivery. (2) Proposed a synthesis: add a simple 'retailer notes' field to the existing order capture flow — giving sales the relationship context they wanted in 1 week of engineering, without the 3-month CRM build. Both stakeholders accepted. The deeper principle: when stakeholders have conflicting positions, look for a solution that serves their underlying interests.",
+      "At PwC, I had no direct authority over any client engineer. My influence levers: (1) Being right about data — I built credibility by making recommendations that were validated by subsequent results. Once 3 of my 4 recommendations proved right, the engineering team started treating my 4th recommendation as more likely to be right. (2) Being a multiplier — I wrote specs that reduced their clarification cycles. Engineers started asking for my specs because they were better than what they were getting from the client's own PM. (3) Advocating for their priorities in business conversations — when the business pushed to compress a timeline, I pushed back with engineering's risk assessment. Engineers trust PMs who represent their concerns upward.",
+      "Requirements changing mid-sprint is a symptom of unclear problem definition upstream, not a stakeholder personality problem. My response: (1) Immediate: scope-protect the current sprint — 'I'll note that requirement for next sprint, let's not disrupt what engineering is building this week.' (2) Root cause: schedule a requirements clarification session before the next sprint starts. The goal: get all stakeholders to sign off on the sprint scope in writing before engineering begins. (3) Structural: if changes kept happening, I'd propose a 2-week discovery sprint before each development sprint to lock in requirements before commitments are made. The change management target was getting to a point where stakeholders felt heard during discovery, not during delivery.",
+      "At Satya Retail, a senior sales leader wanted to add a customer chat feature to the retailer app (retailer to field agent messaging). The request was reasonable — retailers did want to message agents. My position: this competes with WhatsApp (which retailers and agents already use), adds 4-6 weeks of engineering complexity, and addresses a workflow problem better solved by improving order status visibility (why do retailers message agents? Mostly to check on their order). My approach: (1) Acknowledged the need. (2) Reframed the root cause — proposed order status transparency as the alternative. (3) Asked for 6 weeks to test whether order status visibility reduced the contact rate. It did — 40% reduction. The chat feature was deprioritised. The key: I didn't say no to the feature, I said yes to the underlying need with a better solution.",
+      "During the festive UAT crunch at Le Marche, I had to tell the client's CEO that we were going to miss the Diwali launch date for the corporate gifting feature due to a critical bug discovered 36 hours before go-live. My approach: (1) No surprises — called the CEO directly, not via email, the moment I knew. (2) Lead with the solution, not the problem — 'We found a critical bug. Here's the workaround: we launch with manual invoice processing for the first 48 hours while engineering fixes the root cause.' (3) Quantified the impact — estimated 20 corporate orders maximum in the first 48 hours, manageable by the ops team. (4) Committed to a timeline for the fix — engineering committed to 48 hours. The CEO accepted the workaround. Bad news delivered well is still bad news — but it's manageable bad news.",
+      "My first move with a new engineering team: write one piece of documentation they didn't have. Either: a detailed spec for the most ambiguous item in their backlog, a data analysis that answers a question they've been wondering about, or a process improvement for something in their sprint ceremonies that was wasteful. Give it to them without asking for credit. Engineers trust PMs who make their lives easier, not PMs who talk about making their lives easier. Second: ask the tech lead what's been blocking them that isn't a feature — tech debt, unclear requirements, bad processes. Then fix one of those things. Third: be on time, be prepared, and deliver what you say you will. Engineering trust is built on consistency.",
+      "At PwC on the NextGenAudit platform, getting alignment across 3 value streams (Scoping, Planning, Execution) plus the architecture team and audit quality team required a specific process. Each team had their own PM, their own engineering team, and their own delivery pressures. Cross-stream conflicts: the Execution team wanted a UI pattern that contradicted the Scoping team's already-shipped design. My approach: (1) Made the dependency visible — created a cross-stream dependency map shared in the bi-weekly sync. (2) Facilitated the decision — brought both teams into a 45-minute session with the architecture lead. Framed it as 'we need a decision, not a debate.' (3) Documented the decision and rationale — so the same conflict didn't resurface. The key: I organised the alignment forum; I didn't try to make the decision unilaterally.",
+      "At Le Marche, I recommended building a pre-checkout pincode availability check (show on the product page whether delivery is available for the user's location). The client's business team rejected it — they were concerned that seeing 'not available in your area' on the product page would reduce add-to-cart rates even for users who could get delivery. My response: (1) Accepted the rejection without sulking. (2) Proposed a test: run the feature for 2 weeks with a holdout group. Measure add-to-cart rate (their concern) and checkout completion rate (my hypothesis). (3) Got agreement to test rather than implement or reject permanently. The test showed: add-to-cart rate flat, checkout completion rate up 8%. Data changed the decision. The lesson: don't fight rejections — test them.",
+      "The key is separating their authority from their opinion. They have authority to make final decisions; they don't have authority over facts. My approach: (1) Provide context without being patronising — 'You may not have seen this data — here's what the funnel shows.' (2) Frame recommendations as trade-offs, not conclusions — 'We could do X (which gives us Y but costs us Z) or we could do A (which gives us B but costs us C). My recommendation is X because Y is more valuable than B in this context — what's your view?' This gives high-authority, low-context stakeholders the full picture to make an informed decision, rather than making the decision for them or leaving them to decide with incomplete information."
+    ]
+  },
+  {
+    id:"t3",label:"T3 · Failure & Learning",
+    context:"Questions about mistakes, failures, and how you grew from them.",
+    questions:[
+      {q:"Tell me about a product you built or owned that failed. What happened?",t:"Failure"},
+      {q:"Describe your biggest mistake as a PM and what you learned.",t:"Failure"},
+      {q:"Tell me about a time you made a decision with incomplete information that turned out to be wrong.",t:"Failure"},
+      {q:"Describe a time when you missed a deadline. What happened and how did you handle it?",t:"Failure"},
+      {q:"Tell me about a time you got negative feedback and how you responded.",t:"Failure"},
+      {q:"What's a product decision you made that you regret and why?",t:"Failure"},
+      {q:"Describe a time when a project you owned went off the rails. How did you recover?",t:"Failure"},
+      {q:"Tell me about a time you had to kill a feature you had championed.",t:"Failure"},
+      {q:"What's the biggest assumption you've made that turned out to be wrong?",t:"Failure"},
+      {q:"If you could go back and redo one project from your resume, which one and what would you do differently?",t:"Failure"}
+    ],
+    answers:[
+      "At Le Marche, I championed and launched a loyalty points programme in the festive season. My reasoning: higher basket sizes during festive, rewards would incentivise repeat purchase. Engineering built it in 3 weeks. Launch results: 4% of users enrolled in 30 days, negligible impact on repeat purchase rate. Post-mortem: Le Marche's customer base was deal-seeking, not loyalty-motivated. A discount was more compelling than points accumulation. The real failure was in my validation — I had validated the feature by asking users 'would you use a loyalty programme?' (leading question, everyone says yes) rather than testing actual behaviour (would they change their purchase decision because of points). Stated preference is not revealed preference. I now always design validation experiments that test behaviour, not stated intent.",
+      "During the Satya Retail engagement, I moved the FoS platform's order capture flow into development before getting explicit written sign-off from the regional operations manager. The manager flagged during UAT that the flow didn't account for a specific order type (bulk orders for scheme activation) that he'd mentioned verbally in a meeting 3 weeks earlier but that hadn't made it into the spec. Required 1.5 weeks of rework. The lesson: verbal alignment is not alignment. I now use a standard sign-off document — every feature above medium complexity requires explicit written confirmation from all impacted stakeholders before engineering begins.",
+      "At Satya Retail, I decided to build offline-first architecture for the FoS mobile app based on qualitative feedback from 4 field agents during field rides. I didn't have quantitative data on what percentage of working time agents were actually offline. Engineering estimated 6 weeks for offline-first vs 2 weeks for online-only. I decided to build offline-first. The decision turned out to be right — field agents were offline 30-40% of their workday, and the offline-first design was critical for adoption. But I got lucky. If the connectivity had been fine, I would have spent 4 extra engineering weeks on a feature that added no value. The lesson: when making a build decision based on qualitative data, be explicit about the assumption you're testing and design a mechanism to validate it quickly.",
+      "During the Le Marche festive sprint, the corporate gifting checkout feature missed the Diwali go-live by 48 hours due to a critical bug discovered in UAT. My handling: (1) Notified the client CEO immediately (same hour I found the bug). (2) Proposed a workaround: launch with manual invoice processing by the ops team for the first 48 hours. (3) Got engineering to commit to a 48-hour fix timeline. (4) Communicated the workaround to the 8 corporate buyers who had pre-registered. The feature launched 48 hours late with the workaround in place. The CEO's response was positive — not because we missed the deadline (that was bad) but because we found the bug in UAT instead of production, had a solution ready, and communicated proactively.",
+      "During the PwC NGA engagement, a senior audit partner gave feedback that the scoping workflow I had defined in the PBIs was 'too complex for auditors who aren't digitally native.' The feedback came in a group review in front of 8 people. My immediate response: 'Thank you — can you show me specifically which step feels complex?' This turned a potential criticism into a design session. We spent 20 minutes walking through the flow together, identifying 3 specific steps that could be simplified. I incorporated the feedback in the next sprint's PBIs. The key: receive negative feedback as data, not as an attack. Asking 'can you be more specific?' turns defensiveness into collaboration.",
+      "I regret rushing the Le Marche loyalty programme to market without proper validation. The decision was driven by timing pressure (festive season) and overconfidence in my hypothesis (of course users want rewards). The cost: 3 weeks of engineering on a feature that delivered almost no value, and the opportunity cost of what else we could have built in those 3 weeks. If I had run a 1-week validation experiment first (offer points on 5% of orders, measure behaviour change vs control), I would have known within a week that the feature wasn't going to work. The lesson: timing pressure is the enemy of proper validation. The more urgency you feel about launching, the more discipline you need to apply to validation.",
+      "During the Le Marche festive sprint, 4 features were in UAT simultaneously when one of them (the shop by category navigation) was discovered to have a mobile rendering bug 72 hours before the festive go-live. The category grid was broken on iPhone 12 screen size specifically. Recovery approach: (1) Triage: categorised it as P1 (affects significant user segment) but not P0 (not checkout-blocking). (2) Options: delay all 4 features, or ship the other 3 and delay only category navigation. Chose to ship the 3 features that were UAT-passed and delay category navigation by 1 week. (3) Communication: immediately told the client which features were launching and which were delayed and why. (4) Prevention: added iOS device matrix testing to our UAT checklist.",
+      "At Le Marche I had championed and built a 'Recipe Inspiration' feature — curated recipe cards linking to the ingredients on the platform. My hypothesis: content-driven discovery would increase basket size. 6 weeks after launch: recipe page views were reasonable (4% of homepage visitors clicked through) but add-to-cart from recipe pages was 0.3% — 10× lower than the platform average. Users were treating the recipes as content, not a shopping trigger. My response: (1) Presented the data to the client transparently without trying to spin it. (2) Recommended killing the feature to free up the backend content management overhead. (3) Proposed what to learn from it — 'content discovery works for fashion (editorial + product), not necessarily for grocery (purchase is need-driven, not aspiration-driven).' The client agreed. The feature was deprecated at the 90-day review.",
+      "Biggest wrong assumption: at ePayLater, I assumed the biggest friction in the BNPL checkout was the application process (document uploads, identity verification) — because that's the commonly cited friction in fintech onboarding. I expected my user interviews to confirm this. What I actually found: the application process was largely fine. The real friction was post-activation — users who successfully onboarded felt unprepared for how auto-debit worked, how the credit limit changed, and how disputes were handled. I had been looking at the application funnel when the real problem was in the first 30 days of the product experience. Lesson: don't let prior knowledge or industry patterns substitute for actual user research. Go in with hypotheses, not assumptions.",
+      "I'd redo the Le Marche loyalty programme. The issue wasn't the idea — it was the validation failure. What I'd do differently: (1) Before building anything, run a paper test — email 100 users with a description of the loyalty programme and ask them to 'opt in.' Measure opt-in rate. If below 20%, the programme won't work. (2) If the opt-in test passes, run a 2-week behaviour experiment — give points to 10% of users, measure whether their repeat purchase rate changed vs control. (3) Only if the behaviour experiment shows a measurable effect, build the full programme. Total validation time: 3 weeks. Total engineering time saved if it fails: 3 weeks. The expected value of validation is almost always positive."
+    ]
+  },
+  {
+    id:"t4",label:"T4 · Product Philosophy",
+    context:"Questions about how you think about product management as a discipline.",
+    questions:[
+      {q:"How do you prioritise a product backlog when everything is urgent?",t:"PM"},
+      {q:"What is your framework for deciding what NOT to build?",t:"PM"},
+      {q:"How do you know when you have enough data to make a decision?",t:"PM"},
+      {q:"What makes a great PM vs a good PM in your view?",t:"PM"},
+      {q:"How do you think about product-market fit and how do you measure it?",t:"PM"},
+      {q:"What is your approach to user research and when do you use qualitative vs quantitative?",t:"PM"},
+      {q:"How do you balance short-term feature delivery with long-term product strategy?",t:"PM"},
+      {q:"What's your view on agile — do you follow it strictly or adapt it?",t:"PM"},
+      {q:"How do you think about technical debt as a PM?",t:"PM"},
+      {q:"What's something you believe about product management that most PMs disagree with?",t:"PM"}
+    ],
+    answers:[
+      "When everything is urgent: (1) Separate urgency from importance. Most 'urgent' requests are urgent to the person asking, not urgent for the business. (2) Apply a forcing function: 'If we could only ship one thing this sprint, what has the highest expected value?' This forces a ranking. (3) Use ICE scoring for the backlog: Impact × Confidence ÷ Effort. Items with high impact, high confidence, and low effort go first. (4) Be transparent about what's not getting done: 'We can do A or B this sprint. I recommend A because [reason]. B will be in next sprint. Does anyone disagree?' Transparency about trade-offs prevents the feeling that everything is being deprioritised.",
+      "Framework for what not to build: (1) 'Does not solving this problem cause a user to fail at their job?' If no, it's probably not worth building. (2) Is there a non-product solution? (Training, process change, better documentation) — if yes, try that first. (3) Would 80% of our users use this? If less than 20% would, it's a long-tail feature that adds product complexity without proportional value. (4) The regret test: in 12 months, if we don't build this, will we regret it? If the honest answer is 'probably not', don't build it. The backlog should be a ranked list, not a wishlist — saying no is the PM's most important skill.",
+      "You never have enough data. The real question is: what's the cost of waiting for more data vs the cost of a wrong decision? My framework: (1) What's the reversibility of the decision? If reversible (launch a feature behind a feature flag, easy to roll back) — make the call with 60% confidence. If irreversible (deprecate a core feature, change a fundamental data model) — wait for 85%+ confidence. (2) What's the asymmetry of the downside? If the downside of being wrong is catastrophic, wait for more data. If the downside is recoverable, move faster. (3) What additional data would change the decision? If you can't name a specific piece of data that would change your recommendation, you probably already have enough to decide.",
+      "A good PM delivers outcomes. A great PM changes how the team thinks about the problem. Tactically: great PMs write PRDs that make engineering feel smart, not constrained. They give engineers the problem, not the solution. Strategically: great PMs kill features as confidently as they create them — they're as good at saying no as yes. The distinguishing characteristic I've observed: great PMs are comfortable with 70% confidence decisions made in 30 minutes, rather than seeking 95% confidence and making a decision in 2 weeks when the opportunity is gone. And they're honest about uncertainty — they say 'I think this is right but I'm not certain, here's how we'll know if it's wrong' rather than projecting false confidence.",
+      "PMF signals I trust: (1) Retention curve flattening — users who stay after week 4 continue to stay. The retention curve has an asymptote above zero. (2) Organic growth — users referring others without incentives, not because of a referral programme. (3) The 'very disappointed' test (Sean Ellis) — if 40%+ of your users say they'd be very disappointed if they could no longer use your product, you probably have PMF. (4) For B2B: net revenue retention above 100% — existing customers are paying more over time, not churning. Metrics I don't trust for PMF: total user count, downloads, press coverage, revenue in the first 3 months (can all be hacked with marketing spend).",
+      "Qualitative research: interviews, usability tests — surfaces the 'why' behind behaviour, generates hypotheses. Use when: you don't know what the problem is, a metric moved unexpectedly, or you're designing something novel with no precedent. Quantitative research: surveys, analytics, A/B tests — validates hypotheses at scale, tells you 'what' is happening. Use when: you have a hypothesis and want to validate it, or measure the impact of a change. The rule: use qualitative to generate hypotheses, quantitative to validate them. The mistake most PMs make: running quantitative analysis before generating a good hypothesis (you get a lot of data, none of it tells you what to do) or running user research when you need a statistically validated answer.",
+      "Short-term vs long-term balance: I use a simple allocation framework — 70% of sprint capacity on near-term feature delivery (quarter OKRs), 20% on longer-horizon platform and infrastructure work (things that pay off in 6-12 months), 10% on experimentation (small bets that could be significant). The 20% long-term investment is non-negotiable — if you let it shrink to zero, you accumulate strategic debt that compounds. Practically: I protect this 20% by making it explicit in sprint planning and naming the specific long-term project it's going toward, not letting it dissolve into 'whoever has spare capacity.'",
+      "I adapt agile rather than follow it strictly. The principles I keep: (1) Working software over documentation — ship small, learn fast. (2) Responding to change over following a plan — the sprint plan is a commitment, not a contract. (3) Customer collaboration over contract negotiation. The practices I adapt: sprint length (2 weeks works for most features, some discovery work needs 4-week cycles), daily standups (valuable when the team is blocked, less valuable when things are running smoothly), and story points (I prefer simpler complexity buckets: S/M/L/XL over numbered Fibonacci points). The thing I reject: Agile as a performance — teams who follow all the ceremonies but don't actually ship or learn from failures.",
+      "Technical debt as a PM: I treat it like financial debt — it has an interest rate (the ongoing cost of working around it) and a principal (the effort to fix it). High-interest debt (debt that slows every sprint — a poorly designed data model, a monolithic service that's hard to test) gets prioritised like a P1 feature. Low-interest debt (debt in rarely-touched code) can wait. Allocation: I protect 20% of sprint capacity for tech debt by default. When a team says they need more, I ask: what's the interest rate? If the answer is 'this is adding 2 days to every sprint', the debt cost is higher than the cost of fixing it. That's a clear prioritisation case.",
+      "Contrarian view: the best PM skill is knowing when not to do discovery. Discovery has been fetishised to the point where teams run 8 weeks of user interviews before writing a single line of code — for problems that are obvious. If users tell you checkout is confusing and your funnel shows 40% drop-off at payment, you don't need 3 months of discovery. You need to ship a guest checkout, measure it, and iterate. Over-discovery is a form of procrastination. The real skill is calibrating how much discovery the uncertainty level of this specific problem requires — which ranges from 'just ship it and measure' to 'we need 6 weeks of ethnographic research before we can even frame the problem.'"
+    ]
+  },
+  {
+    id:"t5",label:"T5 · Ambiguity & Pressure",
+    context:"Questions about how you perform under pressure, with ambiguity, and in difficult situations.",
+    questions:[
+      {q:"How do you handle ambiguity in a role where requirements change constantly?",t:"Pressure"},
+      {q:"Describe a time you had to make a critical decision under extreme time pressure.",t:"Pressure"},
+      {q:"How do you handle a situation where the data and your intuition conflict?",t:"Pressure"},
+      {q:"Describe a time when you had to manage multiple high-priority projects simultaneously.",t:"Pressure"},
+      {q:"How do you handle pushback from engineering on your prioritisation decisions?",t:"Pressure"},
+      {q:"Describe how you've dealt with a toxic or difficult team dynamic.",t:"Pressure"},
+      {q:"Tell me about a time you had to make a decision without the authority to make it.",t:"Pressure"},
+      {q:"How do you handle pressure from above to ship faster than is responsible?",t:"Pressure"},
+      {q:"Describe a time you had to rebuild trust after a failure.",t:"Pressure"},
+      {q:"What do you do when you're stuck — when a problem has no obvious solution?",t:"Pressure"}
+    ],
+    answers:[
+      "My approach to ambiguity: distinguish between the ambiguity that should be resolved (unclear requirements where the right answer exists and needs to be found) and ambiguity that should be embraced (strategic uncertainty where experimentation is the right response). For the first type: document the question, identify who has the answer, and resolve it within 24 hours rather than letting it block the sprint. For the second type: define the smallest experiment that would give a useful signal, timeframe it (2 weeks), and proceed. The biggest mistake in ambiguity is analysis paralysis — spending 4 weeks figuring out the perfect answer when 2 weeks of experimentation would give a better answer.",
+      "During the Le Marche festive sprint: a critical bug was discovered in the corporate gifting checkout 36 hours before Diwali go-live. Engineering estimated 48 hours to fix it properly. Options: (1) Delay the entire feature (miss the festive window). (2) Ship with a manual workaround. (3) Descope to a simpler version. I chose option 2 — manual invoice processing by the ops team for the first 48 hours. Decision criteria: maximum 20 corporate orders in the first 48 hours (manageable by ops), engineering committed to a 48-hour fix, the workaround preserved the customer promise. Made the decision in 2 hours, communicated it to all stakeholders within 3 hours. The festive window was preserved.",
+      "When data and intuition conflict, I treat intuition as a hypothesis about why the data shows what it shows — not as a reason to reject the data. Example: at Le Marche, my intuition said recommendations based on brand affinity would outperform co-purchase recommendations. The data showed the opposite. Instead of rationalising the data away, I investigated: why does co-purchase win? The answer: Le Marche users were variety-seeking, not brand-loyal — a contextual insight my intuition hadn't accounted for. The data was right; my intuition was applying the wrong mental model. The principle: when they conflict, investigate the discrepancy rather than declaring one wrong.",
+      "During the festive sprint at Le Marche, I was simultaneously: managing UAT for 6 features across 2 client engagements (Le Marche festive + Satya Retail FoS launch), handling a production incident (the category navigation mobile rendering bug), and writing the Q4 product roadmap for the client review. My approach: (1) Triage ruthlessly — the production incident got primary attention for 4 hours until resolved. (2) Time-block everything else — 2-hour blocks for UAT, 1-hour block for the roadmap. (3) Delegate what I could — gave my analyst specific tasks on the UAT documentation. (4) Communicate what would slip — told the client's PM the roadmap review would move by 3 days. Not everything gets done on time when you're overloaded — the PM's job is to decide what slips least importantly.",
+      "Engineering pushback on prioritisation falls into two categories: (1) Technical pushback — 'this will take longer than you think' or 'this has dependencies you haven't accounted for.' This is data. Listen, update the estimate, potentially re-prioritise based on new information. (2) Priority disagreement — 'we think X is more important than Y.' This requires understanding their reasoning: if it's 'X has more business impact', engage with the data. If it's 'X is more technically interesting', that's not a prioritisation criterion. My response: 'I hear the concern. Here's the data I used to make this prioritisation. What data would change this ranking?' This turns the pushback into a productive data conversation rather than a authority contest.",
+      "At Satya Retail, the regional sales manager had a combative relationship with the operations team — they blamed each other for delivery failures in the pre-digital process. This dynamic threatened to undermine the FoS platform adoption (each team expected the other to manage the change). My approach: (1) Never took sides. (2) Created a shared metric both teams owned — 'digital order capture rate' which required both the field agents (sales) and the ops team (processing) to succeed. When the metric became shared, the blame dynamic shifted — their incentives aligned. (3) Facilitated a joint sprint retrospective where both teams were in the room. The structured retrospective format (what went well, what didn't, what we'll do differently) was more productive than the blame attribution that happened in 1:1s.",
+      "At Le Marche, the client's CEO asked me directly for a recommendation on whether to launch a new product category (premium pet food) for the festive season. This was a strategic business decision, not a product execution decision — formally above my scope as an embedded PM. My approach: (1) I gave a recommendation with explicit caveats — 'I'm going to give you my analysis, but this is your call to make with the business context I don't have.' (2) I structured the recommendation as a trade-off: 'If you launch: X opportunity, Y risk. If you don't launch: A opportunity cost, B risk avoided.' (3) The CEO appreciated the analysis and made an informed decision (they launched). The key: you can give a recommendation without claiming the authority to make it.",
+      "My approach when pushed to ship faster than is responsible: make the specific risk visible and documented, not abstract. Not 'we might have quality issues' but 'specifically, if we ship without this security review, here is the known vulnerability and here is its potential impact. Who is comfortable signing off on that risk?' Most pressure-to-ship-fast comes from leaders who don't have full visibility of the specific risk. When the risk is named and documented, most reasonable leaders choose to absorb the timeline hit. If they still insist: get written confirmation of the decision — both to protect yourself and to make the accountability clear. I've never had a leader insist after I've documented the specific risk in writing.",
+      "After the Le Marche loyalty programme failure (the feature that drove 4% enrollment in 30 days): I presented the failure data transparently to the client stakeholder at the next sprint review — with a clear post-mortem and lessons learned. My approach to rebuilding trust: (1) Own the failure completely — no deflection to 'the market conditions' or 'the timing'. (2) Show you've learned — present specific process changes you're making as a result. (3) Demonstrate the learning in action in the next sprint — I proposed a smaller, validated feature and used a behaviour-first validation approach. By sprint 3 after the failure, the client stakeholder was using my loyalty programme post-mortem as an example of how to learn from product experiments — the failure became a credibility asset.",
+      "When stuck on a problem with no obvious solution: (1) First, verify the problem statement. Often when I can't find a solution, the problem is underspecified. Reframe: 'What would a solution look like if it existed? What properties would it have?' (2) Talk to an engineer. Engineers often know the constraint you haven't articulated. (3) Talk to a user. The solution is usually obvious once you understand the user's job-to-be-done deeply enough. (4) Time-box the stuck state. If I've been on a problem for more than 2 hours without progress, I explicitly stop, do something completely different for 30 minutes, and come back. Fresh perspective reliably surfaces what the stuck state couldn't. (5) Make the problem smaller. What's the smallest version of this problem I could solve? Starting somewhere is better than solving nothing."
+    ]
+  },
+  {
+    id:"t6",label:"T6 · Questions to Ask",
+    context:"How to close the interview — the questions you ask reveal how you think.",
+    questions:[
+      {q:"What questions do you have for us?",t:"Close"},
+      {q:"What do you want to know about the product/role before deciding if this is right for you?",t:"Close"},
+      {q:"Is there anything about your background you'd like to clarify or expand on?",t:"Close"},
+      {q:"What do you think would be your biggest challenge in this role?",t:"Close"},
+      {q:"How would you approach your first 90 days in this role?",t:"Close"},
+      {q:"What does success look like for this role in year 1?",t:"Close"},
+      {q:"Why are you leaving your current role?",t:"Close"},
+      {q:"What's your timeline for making a decision?",t:"Close"},
+      {q:"Do you have any competing offers or considerations we should know about?",t:"Close"},
+      {q:"What would make you say no to this role?",t:"Close"}
+    ],
+    answers:[
+      "The questions you ask reveal how you think. Good questions: (1) 'What does success look like for this PM in the first 90 days — what would make you say this hire was the right decision?' (Reveals what they actually care about.) (2) 'What's the biggest product challenge the team is facing right now that this role will help solve?' (Shows you're focused on their problem, not just getting a job.) (3) 'How does this team make prioritisation decisions when engineering and business disagree — who has final say?' (Reveals the real power structure.) (4) 'What's something about how product is done here that you're trying to change?' (The most revealing question — tells you where the real problems are and whether leadership is self-aware.) Avoid: 'What does the day look like?' 'What are the growth opportunities?' — these signal you're thinking about yourself, not their problem.",
+      "Before deciding if this is right for you: (1) 'What's the product you're proudest of shipping in the last 12 months and why?' (Reveals product maturity and culture.) (2) 'How close is the PM to the user — do PMs do their own research or is there a research team?' (Determines whether you'll do real PM work or be a project manager.) (3) 'What happened to the last PM who was in this role?' (Attrition pattern is a leading indicator of management quality.) (4) 'What's the engineering team's current biggest frustration with the product process?' (Engineers will tell you the truth about PM culture better than anyone.) The questions you ask in an interview are the same questions you should ask before accepting an offer — use the interview to due-diligence the company, not just sell yourself.",
+      "Clarification opportunity: 'I want to make sure I addressed the [specific question or topic] completely. I mentioned [X] but I didn't fully explain [Y] — would it be helpful if I elaborated?' This shows self-awareness and gives you a chance to fill gaps. Also useful: 'I noticed I didn't get to talk much about [a specific experience that's relevant] — is there anything you'd like to know about that?' The goal: leave no relevant experience on the table. Don't use this to pad — only if there's genuinely something that would strengthen your candidacy.",
+      "Be honest about your genuine areas of development: 'My biggest anticipated challenge is [X]. Here's why I think that, and here's how I'd approach it.' For an in-house role after consulting: 'Building a relationship with a single engineering team over time — in consulting I had to build trust quickly and hand off. I've been explicit with myself that I'll need to adjust my pace and invest in relationships differently than I have in consulting.' Honesty about challenges, paired with a concrete plan for addressing them, is more impressive than pretending there are no challenges.",
+      "First 90 days framework: Days 1-30: listen and learn. Understand the team, the product, the users, and the existing strategy before proposing anything. Schedule 1:1s with every stakeholder. Do a product teardown — use the product for a week and document every observation. Days 31-60: identify the highest-leverage opportunity. Based on what I've learned, where is the single biggest gap between where the product is and where it should be? Propose a specific initiative and get alignment. Days 61-90: ship something. Even a small feature — to build credibility, demonstrate execution, and start the trust cycle with engineering. At 90 days: present what I've learned, what I'm prioritising, and why. Make the implicit explicit.",
+      "Before answering, ask: 'Before I answer from my perspective, can you share what success looks like from yours?' This ensures your answer aligns with their actual definition. Then: 'Based on what you've described, here's what I'd be focused on achieving: [specific outcomes tied to the role's real challenges].' The best answers to 'what does success look like' are specific — not 'deliver value' but 'reduce checkout drop-off by 15% and get the first 3 enterprise clients onboarded' — tailored to what you know about the role's actual challenges.",
+      "Be honest but frame constructively. Not 'my company is toxic' (even if true). Instead: 'I've built a strong portfolio across multiple products in consulting and I'm ready for the depth that in-house PM work offers — seeing decisions compound over time, building a team, and betting on one product's long-term success. That's not possible in the consulting model.' If there's a specific push factor (team instability, role mismatch, impending layoffs): be direct — 'I want to be transparent with you: [specific reason]. I'd rather you hear this from me than discover it later.' Honesty about leaving reasons builds trust.",
+      "Be honest and give an actual timeline — vague timelines ('I'm taking my time') signal disorganisation or lack of interest. If you have other processes running: 'I have two other processes at [type of company] — I'm expecting decisions from those within [timeframe]. I'd ideally like to make a decision within [X weeks]. Does that work for your process?' If this is your top choice: 'This is my top-choice role at the moment — if you're aligned on my fit, I'd like to move as quickly as makes sense for your process.' Clarity about timeline is a professional courtesy that both sides appreciate.",
+      "If you have competing offers: be transparent about the existence of other processes without being specific about companies (unless relevant): 'I have one other offer on the table and one process at an advanced stage. I have [X days] before I need to decide on the existing offer.' This is honest and creates gentle urgency without pressure tactics. If you don't have competing offers: don't manufacture pressure — experienced interviewers can usually tell. Instead: 'This is currently the furthest along process I have. I'm committed to giving it my full consideration.'",
+      "Answer honestly — this question tests self-awareness and integrity. Legitimate reasons to say no: (1) The role doesn't offer PM autonomy — if it's closer to a project manager or BA, that's not the right fit. (2) The product hasn't achieved PMF — if the product is still searching for its market, I'd want to know that upfront and understand whether the PM is expected to solve that problem or execute on a defined strategy. (3) The team culture doesn't match my working style — specifically: if there's no trust between product and engineering, the PM role is almost impossible. (4) The compensation is significantly below market for the responsibility level — worth understanding the band before going too far. Frame these as questions: 'Can you help me understand how much autonomy the PM has in defining the roadmap vs executing a strategy defined above?' rather than deal-breaker statements."
+    ]
+  }
+];
+
+let currentTheme=0;
+let openCards=new Set();
+
+function init(){renderThemeNav();renderTheme(0);}
+
+function renderThemeNav(){
+  const nav=document.getElementById('bulletNav');
+  nav.innerHTML=themes.map((t,i)=>`<button class="bnav-btn ${i===0?'active':''}" onclick="selectTheme(${i})">${t.label}</button>`).join('');
+}
+
+function selectTheme(idx){
+  currentTheme=idx;openCards.clear();
+  document.querySelectorAll('.bnav-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  renderTheme(idx);
+  window.scrollTo({top:document.querySelector('.main').offsetTop-160,behavior:'smooth'});
+}
+
+function renderTheme(idx){
+  const t=themes[idx];
+  const main=document.getElementById('main');
+  let html=`<div class="bullet-context"><strong>Theme:</strong> ${t.context}</div>
+    <div class="prog-wrap"><div class="prog-info"><span>Questions revealed</span><span id="progText">0 / ${t.questions.length}</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div></div>
+    <div class="toolbar"><span class="toolbar-info">${t.questions.length} questions</span><button class="expand-btn" onclick="toggleAll()">Expand All</button></div>`;
+  t.questions.forEach((q,i)=>{
+    html+=`<div class="q-card" id="qc-${i}">
+      <div class="layer-stripe" style="background:var(--accent)"></div>
+      <div class="q-header" onclick="toggleCard(${i})">
+        <span class="q-num">Q${String(i+1).padStart(2,'0')}</span>
+        <span class="q-text">${q.q}</span>
+        <div class="q-meta"><span class="q-type">${q.t}</span><span class="chevron">▾</span></div>
+      </div>
+      <div class="ans-panel"><div class="ans-inner"><div class="ans-label">Ideal Answer</div><div class="ans-text">${t.answers[i]}</div></div></div>
+    </div>`;
+  });
+  main.innerHTML=html;
+}
+
+function toggleCard(i){
+  const card=document.getElementById(`qc-${i}`);
+  if(!card)return;
+  card.classList.toggle('open');
+  if(card.classList.contains('open'))openCards.add(i);else openCards.delete(i);
+  updateProgress();
+}
+
+function toggleAll(){
+  const total=themes[currentTheme].questions.length;
+  const allOpen=openCards.size===total;
+  for(let i=0;i<total;i++){
+    const card=document.getElementById(`qc-${i}`);
+    if(!card)continue;
+    if(allOpen){card.classList.remove('open');openCards.delete(i);}
+    else{card.classList.add('open');openCards.add(i);}
+  }
+  updateProgress();
+}
+
+function updateProgress(){
+  const total=themes[currentTheme].questions.length;
+  const pct=(openCards.size/total)*100;
+  const fill=document.getElementById('progFill');
+  const text=document.getElementById('progText');
+  if(fill)fill.style.width=pct+'%';
+  if(text)text.textContent=`${openCards.size} / ${total}`;
+}
+
+init();
+</script>
+</body>
+</html>
