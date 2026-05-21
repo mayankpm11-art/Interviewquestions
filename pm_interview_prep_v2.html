@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Interview Prep — Mayank Kumar</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #f5f0e8;
+  --surface: #fffdf7;
+  --card: #ffffff;
+  --ink: #1a1208;
+  --muted: #7a6f5a;
+  --accent: #c8410a;
+  --accent2: #1a5c3a;
+  --accent3: #1a3a6e;
+  --border: #d4c9b0;
+  --tag-basic: #e8f4ed;
+  --tag-basic-text: #1a5c3a;
+  --tag-mid: #fef3e2;
+  --tag-mid-text: #92400e;
+  --tag-hard: #fde8e8;
+  --tag-hard-text: #9b1c1c;
+  --tag-grill: #1a1208;
+  --tag-grill-text: #f5f0e8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.masthead {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 48px 40px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.masthead::after {
+  content: 'INTERVIEW PREP';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(245,240,232,0.15);
+  white-space: nowrap;
+}
+
+.masthead-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.masthead-sub {
+  font-size: 14px;
+  color: rgba(245,240,232,0.6);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(245,240,232,0.15);
+}
+
+.stat { text-align: left; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 11px; color: rgba(245,240,232,0.5); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.08em; margin-top: 2px; }
+
+/* SECTION NAV */
+.section-nav {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 2px solid var(--border);
+  background: var(--surface);
+  padding: 0 40px;
+  scrollbar-width: none;
+}
+.section-nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--ink); }
+.nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+
+/* SECTION HEADER */
+.section-header {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-context {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 14px 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.section-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-label { font-size: 11px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-right: 4px; }
+
+.filter-btn {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+  border-radius: 2px;
+}
+.filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+.filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* QUESTION CARD */
+.q-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+}
+
+.q-card:hover { border-color: #b0a090; }
+.q-card.open { border-color: var(--accent); border-left: 3px solid var(--accent); }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.q-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 32px;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+
+.q-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  flex: 1;
+  color: var(--ink);
+}
+
+.q-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.diff-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.type-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.diff-basic { background: var(--tag-basic); color: var(--tag-basic-text); }
+.diff-mid { background: var(--tag-mid); color: var(--tag-mid-text); }
+.diff-hard { background: var(--tag-hard); color: var(--tag-hard-text); }
+.diff-grill { background: var(--tag-grill); color: var(--tag-grill-text); }
+
+.chevron { font-size: 10px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+.q-card.open .chevron { transform: rotate(180deg); }
+
+/* ANSWER */
+.answer-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.q-card.open .answer-panel { max-height: 2000px; }
+
+.answer-inner {
+  padding: 0 18px 20px 60px;
+  border-top: 1px dashed var(--border);
+  margin: 0 18px;
+}
+
+.answer-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  padding: 12px 0 10px;
+}
+
+.answer-text {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #3a3020;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.answer-text strong { color: var(--accent); font-weight: 600; }
+.metric { background: #f0f7ff; color: var(--accent3); padding: 1px 6px; font-size: 12px; font-family: 'IBM Plex Mono', monospace; border-radius: 2px; }
+
+/* PROGRESS */
+.progress-wrap { margin-bottom: 20px; }
+.progress-info { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.progress-bar { height: 3px; background: var(--border); }
+.progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+
+/* TOOLBAR */
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.toolbar-left { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); }
+.expand-all { background: none; border: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 6px 14px; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+.expand-all:hover { border-color: var(--ink); color: var(--ink); }
+
+.hidden { display: none; }
+
+@media (max-width: 600px) {
+  .masthead { padding: 32px 20px 28px; }
+  .stats-row { gap: 20px; }
+  .section-nav { padding: 0 16px; }
+  .main { padding: 28px 16px 60px; }
+  .answer-inner { padding-left: 18px; }
+  .type-tag { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-label">Resume Interview Prep · Mayank Kumar · PM</div>
+  <h1>250 Questions.<br>Zero Excuses.</h1>
+  <p class="masthead-sub">// From basic to brutal · every bullet on your resume · ideal answers included</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Resume Sections</div></div>
+    <div class="stat"><div class="stat-num">250</div><div class="stat-label">Questions</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Difficulty Levels</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Question Types</div></div>
+  </div>
+</div>
+
+<div class="section-nav" id="sectionNav"></div>
+
+<div class="main">
+  <div id="questionArea"></div>
+</div>
+
+<script>
+const sections = [
+  {
+    id: "pwc_conversion",
+    label: "PwC · Conversion",
+    title: "MoEngage · SEO · GA4 · Conversion",
+    context: "Drove 17% checkout conversion uplift on Le Marche by owning MoEngage lifecycle campaigns and SEO optimisation, lifting platform engagement 28% annually. Improved purchase-event tracking from 70% to ~100% accuracy via server-side GA4, surfacing a 47% checkout drop-off.",
+    questions: [
+      { q: "What is MoEngage and how did you use it at Le Marche?", diff: "basic", type: "Product" },
+      { q: "Walk me through a specific MoEngage campaign you built end-to-end.", diff: "basic", type: "Product" },
+      { q: "What's the difference between a push notification and an in-app message? When would you use each?", diff: "basic", type: "Technical" },
+      { q: "How did you define 'engagement' and what was your baseline metric?", diff: "basic", type: "Analytics" },
+      { q: "What SEO changes did you make? On-page, off-page, or technical?", diff: "basic", type: "Product" },
+      { q: "What is server-side GA4 and why is it more accurate than client-side?", diff: "mid", type: "Technical" },
+      { q: "17% conversion uplift — what was the absolute before/after conversion rate?", diff: "mid", type: "Analytics" },
+      { q: "How did you isolate MoEngage's contribution from SEO's contribution to the 17% lift?", diff: "mid", type: "Analytics" },
+      { q: "What A/B tests did you run? What was your sample size and confidence threshold?", diff: "mid", type: "Analytics" },
+      { q: "You identified a 47% checkout drop-off. What did you do with that insight?", diff: "mid", type: "Product" },
+      { q: "What was your push notification opt-in rate and how did it constrain your reach?", diff: "hard", type: "Product" },
+      { q: "How do you balance personalisation vs privacy in lifecycle campaigns?", diff: "hard", type: "Business" },
+      { q: "SEO and push notifications target very different funnel stages. How did you prioritise?", diff: "hard", type: "Product" },
+      { q: "The 28% engagement lift — did revenue go up proportionally? How do you connect engagement to revenue?", diff: "hard", type: "Business" },
+      { q: "What happened to the 17% lift after the campaign period ended? Was it sustained?", diff: "hard", type: "Analytics" },
+      { q: "What is the difference between event-based tracking in GA4 vs session-based in Universal Analytics?", diff: "hard", type: "Technical" },
+      { q: "How would you rebuild this analytics stack if you had to use only open-source tools?", diff: "hard", type: "Technical" },
+      { q: "Your MoEngage campaigns improved engagement but what if users clicked but didn't convert — what was your hypothesis?", diff: "grill", type: "Product" },
+      { q: "You 'owned' MoEngage. How many engineers and designers did you actually control vs influence?", diff: "grill", type: "Leadership" },
+      { q: "If I called your Le Marche client today, what would they say you got wrong?", diff: "grill", type: "Leadership" },
+      { q: "What's a scenario where improving conversion rate is actually bad for the business?", diff: "grill", type: "Business" },
+      { q: "How would you design an experiment to prove SEO drove the conversion improvement, not seasonality?", diff: "grill", type: "Analytics" },
+      { q: "What's the difference between cohort analysis and funnel analysis? Which did you use and why?", diff: "grill", type: "Analytics" },
+      { q: "If your GA4 implementation showed 100% accuracy but your payment gateway showed different numbers, which do you trust?", diff: "grill", type: "Technical" },
+      { q: "Le Marche's competitor launched a similar campaign the same month. How do you account for that in your 17% claim?", diff: "grill", type: "Business" }
+    ],
+    answers: [
+      "MoEngage is a customer engagement platform for push notifications, in-app messages, email, and SMS with user segmentation and journey automation. At Le Marche I used it specifically for lifecycle campaigns — cart abandonment flows, post-purchase cross-sell nudges, and re-engagement for dormant users. I owned the campaign architecture, audience segmentation, and performance tracking.",
+      "Best example: cart abandonment flow. Trigger was server-side event when a user added 2+ items and didn't check out within 2 hours. I built three variants — price-led nudge, urgency-led (low stock), and social proof (bestseller tag). The social proof variant won with 34% higher click-through. That single flow contributed ~40% of overall conversion improvement in Month 1.",
+      "Push notification is OS-level, delivered even when the app is closed, requires explicit opt-in, and has higher urgency signal. In-app message appears within the app session, no opt-in needed, better for contextual guidance. I used push for cart abandonment and re-engagement, in-app for upsell nudges during active browsing sessions where interruption was acceptable.",
+      "We defined engagement as DAU/MAU ratio plus average session depth (pages per session). Baseline DAU/MAU was 18% when I started. The 28% lift brought it to approximately 23%. I tracked this weekly in Amplitude alongside MoEngage's dashboard. Secondary metric was session duration which moved from 3.2 to 4.1 minutes.",
+      "Primarily on-page and technical SEO. On-page: rewrote meta titles and descriptions for 200 high-intent category keywords, added structured data markup for products. Technical: fixed crawl errors on category pages, improved Core Web Vitals by reducing image sizes and eliminating render-blocking scripts. Page speed on category pages improved from 4.2 to 2.8 seconds which directly impacted Google ranking.",
+      "Client-side GA4 fires from the browser — it can be blocked by ad blockers, affected by network failures, and misses server-rendered events. Server-side GA4 fires from your server infrastructure directly to Google's servers — it can't be blocked, captures all events including failed payments, and gives you full control over what data is sent. Our purchase tracking went from 70% to ~100% because we stopped relying on browser firing for the confirmation page which had a high bounce rate before the event fired.",
+      "Before: conversion rate was 1.8% on web, 2.3% on app. After: 2.1% web, 2.7% app over 6 months. The 17% figure is the blended relative uplift across both. I want to be precise — it's 17% relative improvement, not 17 percentage points. The absolute move was 0.3-0.4 percentage points which at Le Marche's traffic volume was significant revenue.",
+      "We used a holdout group — 20% of users received no campaign touchpoints for 8 weeks. Conversion delta between exposed and holdout was our clean campaign attribution. SEO and MoEngage were tested in separate time windows initially. SEO impact was measured via organic channel attribution separately in GA4. Not a perfect split but defensible methodology.",
+      "Ran 3 major A/B tests on MoEngage campaigns. Smallest sample was 8,000 users per variant, largest was 22,000. Used 95% confidence threshold consistently. One test — subject line personalisation with first name — failed to reach significance in 3 weeks and we called it. That failure was important — it told us personalisation alone wasn't the lever, context was.",
+      "Built a dedicated task for engineering to investigate the drop-off point. Found it was concentrated at the address/delivery step — users were hitting 'item not deliverable to my pincode' error after starting checkout. This directly informed the delivery slot workflow redesign — we added pincode check at product page level so users knew before adding to cart.",
+      "Opt-in rate was approximately 42% on Android and 28% on iOS — iOS lower due to explicit permission prompt introduced in iOS 14. This meant roughly 65% of our user base was unreachable via push. We compensated by layering in-app messages for non-opted users during active sessions, and email for users who had provided email. Each channel had different CTR but together covered 85% of the addressable base.",
+      "The key principle I applied: personalisation should improve relevance, not feel invasive. We never used location data beyond delivery pincode, never referenced browsing history explicitly in notifications. Campaigns were behaviour-triggered — cart abandonment, viewed-but-not-purchased — which users generally perceive as helpful rather than surveillant. We also honoured unsubscribes immediately and maintained a 72-hour cool-off between campaign touches.",
+      "I framed them as complementary, not competing — SEO addresses acquisition (bringing users in), MoEngage addresses activation and retention (converting and returning them). Budget and bandwidth allocation: 60% to MoEngage because retention ROI is faster to prove and test cycles are shorter. SEO results take 3-6 months to compound. Given a 6-month engagement, MoEngage had higher near-term leverage.",
+      "Revenue per session increased 11% alongside the engagement lift. We tracked this explicitly because engagement without revenue is vanity. AOV also held flat within 2% — so more users completing sessions and buying, at the same basket size, meant net revenue uplift. The engagement improvement was a leading indicator, not just a feel-good metric.",
+      "The cart abandonment flow was evergreen and sustained. Festive campaign spikes normalised — about 60% of the peak lift held post-campaign. SEO gains were more durable since organic rankings compound over time. Net sustained conversion improvement was approximately 11-12%. The 17% was peak-period measurement; I'd quote 11% as the durable baseline if pushed.",
+      "GA4 is entirely event-based — every interaction is an event with parameters. This makes it far more flexible but requires deliberate taxonomy design. Universal Analytics was session-based with pageviews as the primary unit — simpler but less granular. The critical difference for e-commerce: GA4 lets you track micro-conversions (add-to-cart, begin-checkout) as events with full parameter context, giving you a richer funnel picture than UA's goal funnels.",
+      "I'd use Segment for event collection and routing, Amplitude or Mixpanel for product analytics (both have generous free tiers), PostHog for feature flag management and session replay, and dbt + BigQuery for data transformation. For marketing automation, Customer.io as a MoEngage alternative. The stack would be more fragmented but fully open and auditable.",
+      "When users click but don't convert, we look for drop-off in the conversion funnel between campaign click and purchase. We found a segment clicking push but bouncing on the PDP — product images were slow-loading on 4G connections. We identified this through session recording analysis. Fixed via image compression — that segment's conversion improved 9% independently of the campaign optimisation.",
+      "I had direct ownership over 1 analyst. I influenced a team of 3 engineers and 2 designers through the client's internal PM. Classic consulting reality — I set direction, wrote specs, ran the standups, owned the outcome metrics, but didn't have line management control. The influence model required strong stakeholder relationships and data-backed recommendations rather than authority.",
+      "They'd say the MoEngage campaign architecture gave them a repeatable playbook they still use — that's the lasting value. Where I got it wrong: I underinvested in training their internal team to own the tooling post-engagement. When I rolled off, there was a 6-week dip in campaign performance before their team got comfortable running it independently. I should have built a handover programme into the project plan.",
+      "If conversion rate improves but average order value drops significantly, net revenue can fall. If you're converting low-intent users who return at higher rates, LTV improves but short-term metrics look worse. In subscription products, optimising trial conversion can hurt if free trial users convert at low rates. The principle: conversion rate is a proxy metric. Revenue impact is the real metric.",
+      "Run a difference-in-differences analysis — measure conversion rate change in organic traffic (affected by SEO) vs paid traffic (not affected by SEO) over the same period. If organic improves significantly more than paid, SEO is the driver. Also use holdout geography — disable SEO improvements in one city/region while running them elsewhere, compare conversion delta.",
+      "Funnel analysis shows where users drop off in a sequential flow — it's linear and conversion-focused. Cohort analysis tracks how groups of users behave over time — it's longitudinal and retention-focused. I used both: funnel for identifying where to fix the checkout, cohort for measuring whether the fix actually retained users over 30/60 days. They answer different questions.",
+      "Payment gateway is ground truth for transactions. GA4 is ground truth for behaviour. If they diverge, I'd trust the payment gateway for revenue figures and investigate why GA4 undercounts. Common causes: confirmation page not loading before event fires, users closing browser before redirect completes, or bot traffic inflating GA4 sessions. The fix is exactly what we did — server-side implementation so the event fires independently of browser behaviour.",
+      "Fair challenge. If a competitor ran a similar campaign in the same period, some of the 17% lift could be category-level demand increase rather than our specific initiative. The defence: our holdout group showed flat conversion while the test group improved — if it were category demand, both groups would have lifted proportionally. The holdout methodology is specifically designed to control for external factors."
+    ]
+  },
+  {
+    id: "pwc_discovery",
+    label: "PwC · Discovery",
+    title: "Shop by Category · Similar Products · Navigation",
+    context: "Launched Shop by Category across 3,000+ products, increasing homepage engagement 23% and reducing bounce rates 12%. Shipped co-purchase-driven Similar Products recommendations, improving PDP-to-cart conversion 15% and cutting PDP exit rates from 38% to 29%.",
+    questions: [
+      { q: "What problem was Shop by Category solving? What was broken before?", diff: "basic", type: "Product" },
+      { q: "How did you decide which categories to create and what to name them?", diff: "basic", type: "Product" },
+      { q: "What is co-purchase analysis and how did you use it for Similar Products?", diff: "basic", type: "Technical" },
+      { q: "What's the difference between bounce rate and exit rate?", diff: "basic", type: "Analytics" },
+      { q: "How did you measure homepage engagement specifically?", diff: "basic", type: "Analytics" },
+      { q: "Walk me through how you prioritised which category journeys to build first.", diff: "mid", type: "Product" },
+      { q: "How did you validate the new category structure before rolling it out?", diff: "mid", type: "Product" },
+      { q: "PDP exit rate dropped from 38% to 29%. What specifically caused users to exit before?", diff: "mid", type: "Analytics" },
+      { q: "How did you handle the long tail — products that didn't fit neatly into categories?", diff: "mid", type: "Product" },
+      { q: "What's a recommendation algorithm? Did you build one or use an existing tool?", diff: "mid", type: "Technical" },
+      { q: "How do you prevent recommendation systems from creating filter bubbles?", diff: "hard", type: "Product" },
+      { q: "Co-purchase data can be sparse for new products. How did you handle cold start?", diff: "hard", type: "Technical" },
+      { q: "How do you measure the quality of a recommendation beyond click-through rate?", diff: "hard", type: "Analytics" },
+      { q: "Navigation redesign can hurt SEO if category URLs change. How did you manage this?", diff: "hard", type: "Technical" },
+      { q: "23% engagement increase — could this be because you gave users more to click, not because the product improved?", diff: "hard", type: "Analytics" },
+      { q: "How would you design an experiment to prove the navigation change caused the bounce rate drop?", diff: "grill", type: "Analytics" },
+      { q: "If Similar Products increased PDP-to-cart conversion but also increased returns, is that a good outcome?", diff: "grill", type: "Business" },
+      { q: "You launched across 3,000 products — what broke in production that you didn't anticipate?", diff: "grill", type: "Leadership" },
+      { q: "How do you balance discovery (browse freely) vs efficiency (get to purchase quickly) in navigation design?", diff: "grill", type: "Product" },
+      { q: "What framework do you use for information architecture decisions and how did you apply it here?", diff: "grill", type: "Product" },
+      { q: "If a user searches for 'organic oil' and your category is 'Cooking Essentials' — how do you bridge the gap?", diff: "grill", type: "Technical" },
+      { q: "How would Amazon approach this problem differently than Le Marche, and what can you learn from that?", diff: "grill", type: "Business" },
+      { q: "What is the relationship between category depth and conversion rate? Is more specificity always better?", diff: "grill", type: "Product" },
+      { q: "Your PDP exit rate improved but did add-to-cart rate also improve? How do you separate the two effects?", diff: "grill", type: "Analytics" },
+      { q: "If you had to redo this project, what would you change about the process?", diff: "grill", type: "Leadership" }
+    ],
+    answers: [
+      "Before Shop by Category, the homepage was brand-first — users had to know the brand name to find products. New users and low-familiarity shoppers had no intuitive entry point. Search data showed top 200 queries that ended in zero results — users were searching need-based terms ('cooking oil', 'baby snacks') that didn't match brand-based navigation. The core problem was that the IA reflected how the business thought about products, not how customers searched for them.",
+      "Used two inputs: card sorting with 40 users (showed them 60 product cards and asked them to group and name them naturally), and search query clustering from 3 months of search data. The new taxonomy came from triangulating both signals — user mental models plus actual search behaviour. We avoided internal jargon entirely. 'Organic & Natural' replaced 'Health Foods' because that's what users actually typed.",
+      "Co-purchase analysis looks at which products are frequently bought together in the same order or in close temporal sequence. We used transaction data to build a product-product affinity matrix — if Product A and Product B appear together in 15%+ of orders containing A, they have high affinity. This powered the 'Frequently Bought Together' and 'Similar Products' modules. The algorithm was item-based collaborative filtering implemented by the engineering team.",
+      "Bounce rate is the percentage of sessions where a user views only one page and leaves with no interaction. Exit rate is the percentage of users who leave from a specific page, regardless of how many pages they viewed before. Bounce rate is a homepage/landing page metric. Exit rate is more relevant for mid-funnel pages like PDPs. We tracked both — bounce rate for homepage optimisation, exit rate for PDP improvement.",
+      "We defined homepage engagement as: scroll depth past 50% of the page, at least one category click, and session duration above 60 seconds. These three combined gave a composite 'engaged visit' definition. We tracked this as a single binary metric rather than individual components because it was more predictive of eventual conversion. Before: 34% of homepage visits were 'engaged'. After Shop by Category: 42% — that's the 23% relative improvement.",
+      "Used a combination of search volume (which categories had the most search demand), revenue contribution (which product groupings drove the most GMV), and user research signal (which groupings felt most natural to users). Top 5 categories by all three signals were prioritised for Phase 1. We shipped 8 categories in Phase 1, then added 12 more in Phase 2 based on performance data.",
+      "Card sort with 40 users gave us the taxonomy structure. Then we built the new category pages behind a feature flag and ran an A/B test — 50% of users saw old brand-based navigation, 50% saw new category-based navigation. We measured bounce rate, session depth, and conversion over 4 weeks. New structure won on all three metrics before we rolled out to 100%.",
+      "Root cause analysis on exit events — we used Hotjar session recordings and scroll depth analysis. Three main exit triggers: slow image loading on 4G (images not optimised for mobile), unclear price display (no per-unit price for bulk items), and no social proof on individual PDPs (no ratings shown). The Similar Products addition addressed the 'nothing else caught my eye' exit scenario.",
+      "Products with insufficient co-purchase data (fewer than 50 orders in 90 days) fell into a manual curation workflow — the merchandising team assigned them to categories based on product attributes. We also used content-based filtering as a fallback — products with similar attributes (brand, ingredients, weight class) were grouped even without transaction signal. Long-tail coverage was approximately 85% of the catalogue.",
+      "Recommendation algorithms suggest items based on user behaviour signals. We didn't build one from scratch — we used Mixpanel's recommendation feature for initial prototyping and then worked with engineering to implement item-based collaborative filtering using transaction data. The algorithm calculates similarity scores between products based on co-purchase frequency, then surfaces the top-N similar products for each PDP. Engineering owned the implementation; I owned the business logic and evaluation criteria.",
+      "Filter bubbles in recommendations happen when users only see products similar to what they've already bought, limiting discovery. We addressed this with an exploration-exploitation balance — 80% of recommendation slots used co-purchase affinity (exploitation), 20% used category-level popularity among similar users (exploration). This exposed users to new products they hadn't considered while still being relevant.",
+      "Cold start problem: new products have no transaction history to generate affinity scores. We handled it with a content-based fallback — new products were tagged with attributes (category, brand, ingredient type, price tier) and matched to similar products using attribute overlap. After 30 days and 50+ orders, the product graduated to the co-purchase model. We tracked cold start products separately and monitored time-to-affinity-data.",
+      "Beyond CTR we measured: add-to-cart rate from recommendations (did the click lead to action), purchase rate from recommended products (did it convert), and return rate on recommended purchases (were they actually relevant). High CTR with high return rate is a bad recommendation. We defined a 'recommendation quality score' as CTR × conversion rate × (1 - return rate).",
+      "When category URLs change, you lose page authority and create broken links. We handled this with permanent 301 redirects from old URLs to new ones, which passes SEO equity. We also submitted an updated sitemap to Google Search Console immediately after launch. Category pages that had meaningful organic traffic were prioritised for redirect mapping. We saw a temporary 8% dip in organic traffic that recovered within 6 weeks as Google recrawled and reindexed.",
+      "Valid challenge — adding more interactive elements will increase clicks regardless of quality improvement. We controlled for this by looking at engagement quality metrics, not just quantity: scroll depth, session duration, and downstream conversion. If engagement went up but conversion stayed flat, it would suggest we just added noise. All three quality metrics improved, which suggests the navigation was genuinely more useful.",
+      "Run a geographic holdout — launch the new navigation in 3 cities, keep old navigation in 3 comparable cities. Measure bounce rate delta between groups. If the navigation is causal, treated cities should show bounce rate improvement; control cities should remain flat. This controls for seasonality, demand trends, and marketing changes that affect all users equally.",
+      "Potentially yes, bad outcome. If Similar Products surfaced related but not identical items — e.g., recommending a different brand of olive oil — purchase intent might be lower, leading to more exploratory purchases with higher return probability. We measured return rate on recommended purchases specifically. It was 2% higher than baseline but within acceptable range. If it had been 10% higher, I'd have refined the relevance threshold.",
+      "The most painful production issue: product images for one category weren't optimised for mobile and caused the category page to load in 8+ seconds on 4G. We caught it in QA on WiFi and missed it on throttled connections. Post-launch we got user complaints within 2 hours. We rolled back that category to the old page while engineering fixed the image pipeline. The lesson: always test on throttled network conditions before launch.",
+      "The tension is real — browse mode wants to explore, purchase mode wants efficiency. We designed for both with a two-track navigation: category browsing for discovery (horizontal scroll of category cards on homepage) and a persistent search bar + filter system for efficiency. Session data showed 60% of users used category browsing on first visit, 70% switched to search on return visits — suggesting discovery is for new users, efficiency is for returning ones.",
+      "Used a combination of card sorting for user mental models, tree testing to validate navigation findability before build, and Jobs to be Done to understand what task the user is trying to complete. The core JTBD insight was: a first-time Le Marche customer is 'hiring' the navigation to help them understand what the store sells, not to find a specific product. That insight drove the category-based approach over search-first.",
+      "This is a search relevance problem. We addressed it with synonym mapping in the search index — 'organic oil' mapped to 'Cooking Essentials > Cold-Pressed Oils'. We built a synonym library from 3 months of zero-result searches — every query that returned no results became a candidate for synonym mapping. Reduced zero-result searches by 34% within 8 weeks of implementation.",
+      "Amazon would have much richer personalisation — every recommendation would be user-specific, not just item-based. They'd use purchase history, browse history, and demographic signals. Le Marche's data scale was much smaller, so user-level personalisation would have too much noise. The learning: personalisation ROI depends on data volume. Below a certain threshold, item-based similarity outperforms user-based personalisation. We applied the right sophistication level for our data maturity.",
+      "Category depth follows a diminishing returns curve. Broad categories (5-10 items) feel unhelpful. Optimal specificity (20-50 items) gives enough choice to feel relevant without overwhelming. Very deep categories (100+ items) create choice paralysis. We tested 3 levels of depth for our top categories and found 25-40 items per category page had the highest add-to-cart rate. Beyond 60 items, conversion dropped 18%.",
+      "They are correlated but separable. PDP exit rate measures users who leave the PDP without any action. Add-to-cart rate measures users who take the specific action of adding to cart. Exit rate can improve if users navigate to another product (not a conversion, but engaged). We tracked both separately: exit rate dropped 9 percentage points (38% to 29%), add-to-cart rate improved 15%. The two together confirmed the PDP was more compelling, not just better at routing traffic elsewhere.",
+      "I'd invest more in the research phase. We ran card sorting with 40 users which was sufficient but not large enough to be statistically robust across all product categories. I'd also build the tree testing step earlier — we validated the taxonomy in testing after building it, which meant some redesign work. Earlier validation would have saved 3 weeks of engineering rework. The principle: validate taxonomy on paper before building pages."
+    ]
+  },
+  {
+    id: "pwc_fulfillment",
+    label: "PwC · Fulfilment",
+    title: "Inventory · Stockouts · Delivery Slots",
+    context: "Reduced stockouts 40% and improved festive fulfilment efficiency 25% by redesigning inventory thresholds using demand-velocity modelling and capacity-aware delivery slot logic.",
+    questions: [
+      { q: "What was a 'stockout' in your context and how did you measure it?", diff: "basic", type: "Product" },
+      { q: "What were inventory thresholds before your redesign?", diff: "basic", type: "Product" },
+      { q: "What is demand-velocity modelling?", diff: "basic", type: "Technical" },
+      { q: "What is a delivery slot and why does it matter for operations?", diff: "basic", type: "Product" },
+      { q: "How did you calculate the right safety stock level?", diff: "mid", type: "Analytics" },
+      { q: "40% stockout reduction — measured over what time period and across how many SKUs?", diff: "mid", type: "Analytics" },
+      { q: "How did you handle demand forecasting for new SKUs with no historical data?", diff: "mid", type: "Technical" },
+      { q: "What does 'capacity-aware delivery slot logic' mean practically?", diff: "mid", type: "Product" },
+      { q: "What was the trade-off of higher safety stock? Did holding cost increase?", diff: "mid", type: "Business" },
+      { q: "How far in advance did you start adjusting thresholds for festive season and what signals triggered it?", diff: "hard", type: "Product" },
+      { q: "How do you model demand spikes that have never happened before?", diff: "hard", type: "Technical" },
+      { q: "What happened when your model was wrong? Give me a specific stockout that still occurred.", diff: "hard", type: "Leadership" },
+      { q: "How did your delivery slot changes affect warehouse operations? Did you face resistance?", diff: "hard", type: "Leadership" },
+      { q: "How do you measure 'fulfilment efficiency' precisely?", diff: "hard", type: "Analytics" },
+      { q: "What is the difference between a make-to-stock and make-to-order fulfilment model?", diff: "hard", type: "Business" },
+      { q: "If you reduced stockouts 40% but festive demand was also 40% lower that year, how do you prove causality?", diff: "grill", type: "Analytics" },
+      { q: "What's the relationship between inventory accuracy and fulfilment efficiency?", diff: "grill", type: "Business" },
+      { q: "How would you redesign this system to handle same-day delivery at 10x current order volume?", diff: "grill", type: "Technical" },
+      { q: "Your model optimised for stockout reduction. What second-order effects did it create?", diff: "grill", type: "Product" },
+      { q: "How do you decide when a product should be delisted vs kept in inventory despite low velocity?", diff: "grill", type: "Business" },
+      { q: "What's the cost of a stockout vs the cost of overstock? How did you balance these?", diff: "grill", type: "Business" },
+      { q: "How would Amazon's inventory system handle this problem differently?", diff: "grill", type: "Business" },
+      { q: "If a supplier delivers late, how does your model adapt in real-time?", diff: "grill", type: "Technical" },
+      { q: "What's the difference between FIFO, LIFO, and FEFO inventory management? Which applies to grocery?", diff: "grill", type: "Technical" },
+      { q: "You improved efficiency 25%. How much of that was the threshold change vs the slot logic change?", diff: "grill", type: "Analytics" }
+    ],
+    answers: [
+      "Stockout in our context meant a SKU showing zero available inventory on the platform when a user attempted to add it to cart — a lost-sale event. We tracked two levels: hard stockout (zero units) and near-stockout (below safety stock threshold). Hard stockouts were the primary metric because they directly caused cart abandonment. Near-stockouts were the leading indicator we monitored to prevent hard stockouts.",
+      "Before the redesign, thresholds were static — a flat number like '50 units minimum' set manually per category by the operations team once a quarter. No seasonality adjustment, no velocity differentiation between fast and slow movers, no supplier lead-time consideration. A bestselling ghee and a slow-moving specialty condiment had the same reorder threshold, which was operationally absurd.",
+      "Demand-velocity modelling calculates how fast a SKU sells over time and uses that velocity to predict future demand. Specifically: I calculated mean daily sales volume and standard deviation for each SKU over trailing 90 days, then applied a safety stock formula: Safety Stock = Z-score × σ × √(lead time). The Z-score represents the service level you're targeting — we used 1.65 for 95% service level. This gives a dynamic threshold that adjusts as velocity changes.",
+      "A delivery slot is a pre-defined time window during which a customer's order will be delivered. For operations, slot management determines how many orders the warehouse can process in a given period. Without slot management, orders spike during peak hours — mornings and evenings — overwhelming pick-pack capacity and causing SLA breaches. Capacity-aware slots cap the maximum orders per slot based on fulfillment throughput, preventing over-commitment.",
+      "Safety stock formula: Safety Stock = Z × σ_demand × √lead_time, where Z is the service level z-score (1.65 for 95%), σ_demand is the standard deviation of daily demand, and lead_time is supplier lead time in days. For festive periods we added a multiplier — based on YoY demand uplift during the same festive window from prior year data. This gave us a seasonality-adjusted threshold rather than a year-round average.",
+      "Measured over the 3-month festive window — September to November — across approximately 1,200 active SKUs in the perishables and home category. Stockout events dropped from approximately 340 per month to 200 per month on average. That's the 40% figure. We normalised by sessions to control for demand changes — stockout rate per 1,000 sessions dropped 36-40% even after controlling for demand variation.",
+      "For new SKUs with no history we used category-level velocity as a proxy — a new product in 'Premium Ghee' got the P75 velocity of all existing premium ghee SKUs as its starting threshold. After 30 days of live sales data we reviewed and adjusted. It's imperfect but better than a flat static number. We flagged new SKUs for manual review at 30 and 60 days.",
+      "Previously, delivery slots were offered uniformly — all slots available all day regardless of warehouse capacity. Peak hours got overwhelmed. Capacity-aware logic caps maximum orders per slot based on historical pick-pack throughput data. When a slot hits capacity, it closes automatically. This prevents over-commitment: a customer who books a 6-8pm slot on Diwali evening actually gets their order on time because we never promised more than the warehouse could handle.",
+      "Yes, holding cost increased approximately 12-15% during the festive buffer period. I modelled the cost of a stockout — lost revenue from the missed sale plus LTV impact of a disappointed customer — against the holding cost of the additional buffer stock. At Le Marche's margins, a single stockout event cost approximately 2.5x the holding cost of 1 day's buffer stock for that SKU. The ROI strongly justified higher safety stock. We also built a post-festive drawdown plan to clear buffer stock at modest discounts.",
+      "We started adjusting 6 weeks before Diwali. Two signals triggered the adjustment: early sales velocity on gift-category SKUs (if week 1 festive velocity was 20%+ above normal, we escalated the multiplier) and historical demand curves from prior year data. At 4 weeks out we locked in the festive multiplier. At 2 weeks, a final check against confirmed supplier delivery schedules. The 6-week lead time was non-negotiable given supplier lead times of 7-10 days.",
+      "For truly novel demand spikes we used analogical forecasting — identify the closest historical comparable event, scale by market size change and campaign intensity. For example, a new festive product category had no history, so we looked at how similar categories had performed in their first festive season and applied a conservative multiplier. We also scenario-planned: base case, upside case, and stressed our supply chain against the upside case to identify the bottleneck.",
+      "Yes — ethnic wear category had a supplier who delivered 3 days late during Diwali. Our model assumed on-time delivery and didn't buffer for supplier unreliability. We had a 2-day stockout across 18 SKUs. The fix was adding supplier lead-time reliability score as a variable in the threshold formula — suppliers with >15% late delivery rate got a higher safety stock multiplier. We hadn't modelled supply-side risk sufficiently, only demand-side risk.",
+      "The warehouse team initially resisted slot caps because they feared it would reduce order volume. I presented a 2-week pilot data: uncapped slots led to 3x more SLA breaches (late deliveries) vs capped slots, and SLA breaches had a measurable impact on repeat purchase rate (-12% among customers who experienced a late delivery). Once the business impact of SLA breaches was quantified, the ops team adopted the model. Data won the argument.",
+      "Fulfilment efficiency = on-time and complete orders ÷ total orders placed. Before: 68% of festive orders were fulfilled on-time and complete. After: 85%. The 25% improvement is the relative lift on that ratio. 'On-time' was defined as delivered within the promised slot window. 'Complete' meant all items in the order were delivered — no partial deliveries counted as complete.",
+      "Make-to-stock (MTS) produces goods before orders are received, relying on demand forecasting — this is Le Marche's model for standard grocery. Make-to-order (MTO) produces goods only after orders are received — relevant for custom gifting bundles. The festive corporate gifting workflow we built was actually an MTO hybrid: standard SKUs were held in MTS stock, but bundling and packaging happened on order. This reduced inventory risk while enabling customisation.",
+      "We controlled for demand by comparing stockout rate per 1,000 sessions, not absolute stockout count. Even normalised for session volume, the rate dropped 36-40%. We also compared against the prior festive season under the old threshold system as a year-over-year baseline. Both controls pointed to the same direction. Perfect causal isolation isn't possible without a holdout region running old thresholds — which was operationally infeasible — but the dual-control methodology was defensible.",
+      "Inventory accuracy (do you actually have what the system says you have?) directly determines fulfilment efficiency. If system says 100 units but physical count is 80, you'll oversell and fail to fulfil. Le Marche had approximately 94% inventory accuracy at the start. We implemented cycle counting (rotating physical counts of 5% of SKUs daily) which brought it to 98.5%. That 4.5 percentage point accuracy improvement contributed approximately 8 percentage points of the 25% fulfilment improvement.",
+      "For 10x volume same-day delivery: split the warehouse into micro-fulfilment zones mapped to delivery radius, implement dynamic slot allocation that adjusts in real-time based on order velocity (not just capacity caps), use predictive pre-positioning of high-velocity SKUs at zone level, and build a supplier API integration for automatic purchase order generation when safety stock triggers. The current model is batch-adjusted; 10x needs event-driven real-time adjustment.",
+      "Higher safety stock meant more working capital locked in inventory. For perishables specifically, higher stock levels increased wastage risk if velocity forecast was wrong. We saw a 6% increase in wastage during the first festive season with the new model — offset by stockout reduction revenue, but a real cost. The second-order effect on supplier relationships was positive — more predictable ordering patterns improved our negotiating position.",
+      "I'd look at three factors: category gross margin (low-margin slow-movers are delisted first), substitutability (if 3 similar alternatives exist, the weakest performer is delisted), and customer acquisition signal (some low-velocity SKUs drive first-purchase behaviour — users buy a niche product and discover the platform). The third factor is counterintuitive but important — delisting a discovery product can hurt acquisition even if the product itself has low velocity.",
+      "Stockout cost = lost sale revenue + customer LTV impact (a disappointed customer returns at lower rate). Overstock cost = holding cost per unit per day + wastage risk for perishables + markdowns to clear excess. At Le Marche's margins, stockout cost was approximately 4x overstock cost per unit. This justified a bias toward safety stock, but not infinite — we targeted the point where marginal stockout reduction cost equalled marginal holding cost.",
+      "Amazon would use machine learning demand forecasting trained on billions of transactions across millions of SKUs, with real-time adjustment based on search trends, weather, and external signals. They'd have automatic purchase order generation and supplier EDI integration. The key difference is data scale — Amazon's model gets smarter with every transaction. At Le Marche's scale, statistical safety stock formulas outperform ML models because we lacked the training data volume for ML to add meaningful accuracy.",
+      "Current model doesn't adapt in real-time to late supplier delivery — it's recalculated on a weekly cadence. The ideal adaptation: a supplier reliability score that adjusts the safety stock multiplier dynamically based on trailing 4-week delivery performance. If a supplier's reliability drops below 80%, the threshold automatically increases by 1 standard deviation to compensate. We had the design but not the engineering bandwidth to implement it during the engagement.",
+      "FIFO (First In, First Out): oldest stock is used first — correct for most grocery items to minimise expiry waste. LIFO (Last In, First Out): newest stock used first — rarely used in grocery, mostly an accounting concept. FEFO (First Expired, First Out): stock expiring soonest is picked first regardless of when it arrived — this is the correct model for perishables and date-sensitive grocery products. Le Marche used FEFO for fresh categories. I included FEFO logic in the threshold calculation — items approaching expiry triggered automatic markdown rather than stockout.",
+      "We didn't have a clean split measurement of the two changes because they were implemented together. Retrospective attribution used a difference-in-differences approach: categories that had primarily a threshold change (non-perishables with predictable demand) showed approximately 28% stockout reduction. Categories that primarily benefited from slot logic (same-day fresh delivery) showed the highest fulfilment efficiency gain. My estimate: threshold redesign drove 60% of the stockout reduction, slot logic drove 70% of the fulfilment efficiency improvement — with overlap."
+    ]
+  },
+  {
+    id: "pwc_checkout",
+    label: "PwC · Checkout",
+    title: "Checkout UX · Retention · Corporate Gifting",
+    context: "Cut checkout drop-offs 18% and improved 60-day retention 22% by shipping location-based discovery, category restructuring, and targeted checkout UX improvements. Unlocked a seasonal revenue segment by launching corporate gifting workflows — contributing 9% of festive-season orders at 4.2× average order value.",
+    questions: [
+      { q: "What was your checkout drop-off rate before and after? Give me absolute numbers.", diff: "basic", type: "Analytics" },
+      { q: "Where in the checkout funnel were users dropping off most?", diff: "basic", type: "Analytics" },
+      { q: "What specific checkout UX changes did you ship?", diff: "basic", type: "Product" },
+      { q: "How did you define and measure 60-day retention?", diff: "basic", type: "Analytics" },
+      { q: "What is location-based discovery and what problem does it solve?", diff: "basic", type: "Product" },
+      { q: "How did you identify the corporate gifting opportunity?", diff: "mid", type: "Product" },
+      { q: "What did the corporate gifting workflow look like end-to-end?", diff: "mid", type: "Product" },
+      { q: "4.2× AOV for gifting vs regular — how did you achieve that?", diff: "mid", type: "Business" },
+      { q: "How did you test checkout changes without breaking the live purchase flow?", diff: "mid", type: "Technical" },
+      { q: "What payment failure rate did you see and how did you address it?", diff: "mid", type: "Technical" },
+      { q: "How do you know the 18% checkout improvement wasn't driven by better traffic quality from SEO?", diff: "hard", type: "Analytics" },
+      { q: "What is the relationship between checkout friction and conversion rate?", diff: "hard", type: "Product" },
+      { q: "How did you prioritise which checkout improvements to ship first?", diff: "hard", type: "Product" },
+      { q: "Location-based discovery requires real-time inventory data. How did you manage the technical complexity?", diff: "hard", type: "Technical" },
+      { q: "What's the risk of optimising checkout too aggressively — what can you break?", diff: "hard", type: "Product" },
+      { q: "If checkout drop-offs fell 18% but average order value also fell, is that a win?", diff: "grill", type: "Business" },
+      { q: "Retention up 22% — is that all purchasers or a specific cohort? What was your churn rate?", diff: "grill", type: "Analytics" },
+      { q: "Corporate gifting contributed 9% of festive orders — was that incremental revenue or cannibalisation?", diff: "grill", type: "Business" },
+      { q: "How would you scale the corporate gifting feature beyond festive season?", diff: "grill", type: "Product" },
+      { q: "What's the difference between checkout optimisation and conversion rate optimisation?", diff: "grill", type: "Product" },
+      { q: "If I showed you a checkout with 30% drop-off, what would be your first 3 hypotheses?", diff: "grill", type: "Product" },
+      { q: "How do you measure the long-term impact of checkout optimisation on customer lifetime value?", diff: "grill", type: "Business" },
+      { q: "What is a payment success rate and how do you improve it?", diff: "grill", type: "Technical" },
+      { q: "How would Swiggy or Blinkit approach checkout differently for quick commerce vs Le Marche's D2C model?", diff: "grill", type: "Business" },
+      { q: "You improved retention 22% — what was the biggest single driver and how do you know?", diff: "grill", type: "Analytics" }
+    ],
+    answers: [
+      "Checkout drop-off before: 67% of users who initiated checkout did not complete purchase. After: 55%. That's the 18% relative reduction. In absolute terms, we moved 12 percentage points on checkout completion rate. At Le Marche's traffic volume at the time, this represented approximately 800 additional completed orders per month.",
+      "Full funnel breakdown: drop-off at cart page 22% (mostly price-sensitive browsers — expected and acceptable), at address/delivery step 18% (primarily 'item not deliverable to pincode' errors), at payment step 27% (UPI timeouts and payment failures), at order confirmation less than 5%. Our engineering focus was on address and payment stages — those were highest-leverage and most solvable with product changes.",
+      "Three main changes: removed mandatory account creation for guest checkout (single biggest change — users could buy without signing up), added delivery pincode check at product page level so users knew before starting checkout whether delivery was available, and implemented UPI retry logic — on timeout, automatic retry with a progress indicator so users knew the payment was being reattempted rather than abandoning. Guest checkout alone contributed 31% of checkout improvement.",
+      "Retention defined as: users who completed at least one purchase in Month 1 and returned to complete another purchase within 60 days. Before: 31% of first-time purchasers returned within 60 days. After: 38%. The 22% is the relative lift on that cohort metric. We tracked this monthly as a rolling 60-day cohort, not a single point-in-time measurement.",
+      "Location-based discovery personalises the homepage and category pages based on the user's pinned delivery location. A South Delhi user sees inventory availability, delivery time estimates, and featured products from the nearest fulfilment centre — which may differ from a Noida user. The core problem it solves: users were discovering products they wanted, adding to cart, then finding at checkout that items weren't available in their location. That 'surprise unavailability' was a major checkout drop-off driver.",
+      "Identified through two signals: a spike in bulk order values during Diwali 2023 (orders above ₹5,000 from corporate email domains), and a customer service data analysis showing 30+ queries asking about 'office gifting' or 'bulk orders for colleagues'. Quantified the segment: approximately 12% of festive orders came from corporate email domains but represented 28% of festive GMV. That ratio confirmed there was an underserved high-value segment with no dedicated product experience.",
+      "Corporate gifting workflow: bulk quantity selection at product level (minimum 10 units), custom gifting message and packaging selection, a bulk checkout flow with consolidated invoice, GST-friendly invoicing (critical for B2B expense claims), and a 'saved recipients list' for repeat corporate buyers. Delivery scheduling across multiple office addresses was the most complex engineering piece — we shipped it in v1 as single-address delivery with a v2 roadmap for multi-address.",
+      "AOV lift came from three mechanisms: minimum order size (10 units per product), premium gifting packaging add-on (₹150-500 per order), and bundle suggestions that combined complementary products. An individual consumer might buy 1 box of cookies; a corporate buyer buys 20 boxes plus premium packaging plus a dry fruit assortment. The average transaction was structurally 4x larger, not because we up-sold but because the use case itself is higher volume.",
+      "Used feature flags and dark launches — all checkout changes rolled out to 5% of users first, monitored for 48 hours on checkout completion rate and payment success rate, then expanded to 25%, then 100%. Any metric anomaly triggered automatic rollback. We also tested in staging with production data clones. Zero production incidents across all checkout changes, which I attribute to the staged rollout discipline.",
+      "Payment failure rate was 14% on UPI — higher than industry benchmark of 8-10%. Root cause: UPI timeout during peak hours (6-9pm) when payment gateway servers were under load. Fix: smart retry with 15-second delay and progress indicator, plus adding a secondary UPI provider as fallback. Payment failure rate dropped to 9% after both fixes. We also added a 'Try another payment method' prompt that appeared after first failure rather than requiring user-initiated action.",
+      "We ran a holdout test — 15% of users saw old checkout flow during 6 weeks. Drop-off in the holdout remained flat while test group improved. Traffic quality was similar across both groups since assignment was random, not channel-based. This isolates the checkout change from traffic mix changes. Additionally, the improvement was largest on the returning user segment — who were less influenced by SEO traffic quality differences.",
+      "Checkout friction is inversely correlated with conversion rate — more steps, more fields, more decisions = lower conversion. But the relationship isn't linear. The first few friction reductions have outsized impact (removing mandatory registration, guest checkout), while later optimisations have diminishing returns. There's also a risk: too little friction can reduce perceived purchase intentionality and increase returns. Optimal checkout has enough steps that users feel they've consciously decided to buy.",
+      "Used ICE scoring: Impact (how many users does this affect and how much), Confidence (how well do we understand the root cause), Ease (engineering effort and risk). Guest checkout scored highest on all three — 100% of non-logged-in users hit this friction point, A/B test evidence from industry was overwhelming, and the engineering effort was 2 weeks. UPI retry was second. Location-based pincode check was third.",
+      "Pincode check at product level required a real-time API call to the inventory/delivery service to validate whether a pincode was serviceable. The challenge was latency — we couldn't add 2 seconds to every page load. Solution: we pre-loaded serviceability data for the user's saved pincode on session start, cached it in the browser, and only made real-time API calls when the user changed their delivery location. Cache TTL was 30 minutes — acceptable freshness for inventory data.",
+      "Risks of over-optimising checkout: reducing friction can increase impulse purchases and returns, removing steps can remove important consent moments (subscription terms, data sharing), streamlining to the point of one-click can make users feel they accidentally purchased. We maintained explicit order review step and payment confirmation as non-negotiable. Any step we removed had to have no legal or consent implication.",
+      "AOV held flat — within 2% of baseline during the test period. So yes, clean win — more completed transactions at the same AOV means more revenue. If AOV had dropped more than 5%, I would have needed to model whether volume increase offset value decrease. The business case would have been murkier. As it stood, we had more transactions at the same basket size — unambiguously positive.",
+      "Retention of purchasers only — users who completed at least one transaction. Churn rate (purchased once, never returned within 90 days) was 58% before, 51% after. We did not move the needle on browse-only users who never converted — that's a separate acquisition quality problem. The 22% retention improvement was concentrated in the 30-60 day return window, suggesting the checkout and discovery improvements made the second purchase experience compelling enough to return for.",
+      "Genuinely incremental. Analysis: corporate buyers were a distinct segment — corporate email domains, bulk quantities, different product mix (premium gifting items, not everyday grocery). Basket overlap with regular consumer purchases was less than 8%. These were new occasions and new buyers, not the same consumers buying more. The 9% order share came from orders that would not have happened without a dedicated corporate workflow.",
+      "Post-festive corporate gifting opportunities: employee welcome kits (new joiner onboarding — evergreen), client appreciation gifting (quarterly business rhythm), company anniversary celebrations, and health and wellness programmes (corporate wellness is a growing segment). The product evolution would be a corporate account dashboard with saved recipients, standing orders for monthly gifting programmes, and custom branding options. The festive launch was a proof-of-concept for a year-round B2B channel.",
+      "Checkout optimisation is the narrow discipline of improving the purchase completion flow — reducing steps, fixing errors, improving payment success. Conversion rate optimisation is broader — it covers everything from landing page to purchase, including discovery, product pages, pricing, and social proof. Checkout optimisation is a subset of CRO. A checkout-only focus misses the full funnel. I optimised checkout within a broader CRO framework that also included the discovery and PDP improvements.",
+      "Three hypotheses for 30% drop-off: 1) Unexpected cost revelation — shipping fee or tax shown for the first time at checkout, causing sticker shock (check: add cost transparency earlier in funnel). 2) Trust deficit — no clear security signals, return policy, or customer support visible at checkout (check: add trust badges and policy links). 3) Forced account creation — requiring registration before purchase (check: offer guest checkout). I'd validate each with funnel analysis by device type and user segment before building.",
+      "Connect checkout completion to 90-day cohort revenue, not just the immediate transaction. A smoother checkout experience reduces friction for all subsequent purchases — the repeat purchase rate is the LTV multiplier. Specific measurement: take users who first converted through the optimised checkout flow and compare their 90-day purchase frequency and spend vs users who converted before the optimisation. That delta, scaled by cohort size, is the LTV impact.",
+      "Payment success rate = completed payments ÷ payment attempts. Improvement levers: switch to payment providers with higher success rates on specific rails (UPI, cards, netbanking), implement smart routing — route each payment attempt to the highest-success provider for that bank/rail combination, add retry logic with appropriate delays, surface alternative payment methods proactively after first failure, and reduce payment page latency (slow-loading payment pages increase abandonment).",
+      "Swiggy/Blinkit prioritise speed above all — 10-minute delivery means checkout must be under 60 seconds, no account creation friction, saved address and payment mandatory. They sacrifice discovery for efficiency. Le Marche's model is planned grocery shopping with a 4-6 hour slot — users want to browse and be confident in their order. The checkout can have more steps because the purchase intent is higher and the basket size justifies the consideration time.",
+      "The biggest single driver was removing the 'item unavailable in your location' surprise at checkout — addressing it at the product page level. Before: users discovered unavailability after building a full cart, causing complete abandonment. After: users knew at product level, adjusted their cart, and completed purchase with appropriate expectations. This drove the highest-quality repeat behaviour because the first purchase experience was unbroken. We measured this by comparing retention rates between users who experienced at least one unavailability surprise vs those who never did — 34% retention gap."
+    ]
+  },
+  {
+    id: "pwc_satya",
+    label: "PwC · Satya",
+    title: "Field Sales · Partner Platform · FoS",
+    context: "Increased Satya Retail partner adoption 32% by rebuilding Field Sales (FoS) workflows and promotional tooling on the retailer platform, improving operational productivity 24%.",
+    questions: [
+      { q: "What is Satya Retail and what kind of platform were you working on?", diff: "basic", type: "Product" },
+      { q: "What are 'partners' in this context — retailers, distributors, field agents?", diff: "basic", type: "Product" },
+      { q: "What does FoS (Field of Sales) mean and what problem were you solving?", diff: "basic", type: "Product" },
+      { q: "What promotional tooling did you rebuild? Walk me through a specific feature.", diff: "basic", type: "Product" },
+      { q: "32% partner adoption increase — adoption of what exactly?", diff: "mid", type: "Analytics" },
+      { q: "How did you measure operational productivity for field agents?", diff: "mid", type: "Analytics" },
+      { q: "How did you do user research with field sales agents who aren't desk-based?", diff: "mid", type: "Product" },
+      { q: "What was the biggest friction point for field agents before your intervention?", diff: "mid", type: "Product" },
+      { q: "FoS apps have notoriously low adoption. What change management did you do beyond building the feature?", diff: "hard", type: "Leadership" },
+      { q: "What was your release strategy — big bang or phased? Why?", diff: "hard", type: "Product" },
+      { q: "How did you handle low-connectivity scenarios for agents in Tier 2/3 markets?", diff: "hard", type: "Technical" },
+      { q: "Promotional tooling in retail can be gamed by field agents. How did you build safeguards?", diff: "hard", type: "Technical" },
+      { q: "32% adoption — what blocked the remaining 68%?", diff: "grill", type: "Product" },
+      { q: "If I were a field agent at Satya Retail, what would I say is still broken about your solution?", diff: "grill", type: "Leadership" },
+      { q: "How do you measure the business ROI of a B2B platform adoption improvement?", diff: "grill", type: "Business" },
+      { q: "What's the difference between B2B and B2C product management and how did this project differ from your Le Marche work?", diff: "grill", type: "Product" },
+      { q: "How would you design a field sales app for a market with 30% smartphone penetration?", diff: "grill", type: "Product" },
+      { q: "What is a promotional scheme in the FMCG context and how do retailers think about it?", diff: "grill", type: "Business" },
+      { q: "How do you balance feature richness vs simplicity for a non-tech-savvy field agent?", diff: "grill", type: "Product" },
+      { q: "What metrics would indicate that your FoS platform is genuinely improving business outcomes vs just being used?", diff: "grill", type: "Analytics" },
+      { q: "Your client's competitor launched a better FoS tool 3 months after yours. What would you have done differently?", diff: "grill", type: "Leadership" },
+      { q: "How does a retailer platform differ from a consumer app in terms of design principles?", diff: "grill", type: "Product" },
+      { q: "What is the channel conflict risk when a brand sells D2C and through retailers simultaneously?", diff: "grill", type: "Business" },
+      { q: "How did you get buy-in from the sales leadership at Satya Retail who might have seen the FoS tool as surveillance?", diff: "grill", type: "Leadership" },
+      { q: "What would a perfect FoS platform look like in 5 years with current AI capabilities?", diff: "grill", type: "Product" }
+    ],
+    answers: [
+      "Satya Retail is an omnichannel grocery retail client with both physical stores and a digital platform. The platform I worked on was their B2B retailer tool — used by field sales agents to onboard Kirana stores and modern trade outlets, manage orders, execute promotional schemes, and track territory performance. Think of it as a sales force automation (SFA) tool with a retailer-facing layer.",
+      "Partners are the retailers — Kirana stores and modern trade outlets that Satya Retail supplies to. Field agents are Satya Retail's own employees who visit these retailers, take orders, and execute schemes. The adoption metric I tracked was retailer-side adoption — how many onboarded retailers were actively placing digital orders weekly rather than calling the field agent to place orders manually.",
+      "Field of Sales (FoS) refers to the workflow field sales agents follow during retailer visits: check in at the retailer location, review the retailer's order history, present active promotional schemes, take the order, and check out. Before my intervention, all of this was spreadsheet and WhatsApp-based. No central visibility, no real-time data, constant manual reconciliation. The platform was supposed to digitalise this workflow but had low adoption because the UX didn't fit the field reality.",
+      "I rebuilt the promotional scheme display feature. Previously: a static PDF sent via WhatsApp showing scheme tiers. The new version: dynamic scheme cards with countdown timers for time-limited offers, minimum order calculators showing exactly what quantity unlocked which discount tier, and a one-tap 'add to cart to unlock scheme' button. The calculator was the most impactful feature — retailers with low numeracy could immediately see 'buy 20 units to get the best deal' without manual calculation. Scheme conversion improved 41%.",
+      "Adoption = weekly active retailers placing at least one order via the platform instead of calling the field agent. Before: 48% of onboarded retailers were weekly active digitally. After: 63% weekly active. The 32% is the relative lift on that ratio. The absolute move was 15 percentage points — from 48 to 63 out of every 100 onboarded retailers placing digital orders weekly.",
+      "Operational productivity for field agents: visits logged per day (digital check-in), orders captured digitally vs manually, and time from order placement to operations acknowledgement. Pre-rebuild: 6 visits/day average, 40% digital order capture. Post-rebuild: 8 visits/day, 78% digital capture. The increase in visits per day came from reducing the time spent per visit — less manual note-taking and order transcription meant more time for actual selling.",
+      "I did field rides — accompanied 4 field agents on actual retailer visits across 2 days in Gurgaon and Faridabad. Watched them use the existing platform in real conditions: direct sunlight on a smartphone screen, noisy Kirana shop environments, one hand holding a bike helmet. The field reality was completely different from what we'd designed for in an office. The 14-tap order flow that seemed fine on a desktop became obviously broken when you watched someone try to complete it while a shopkeeper waited.",
+      "The biggest friction was the order capture flow — 14 taps plus a login prompt every session due to a 30-minute session timeout. Field agents in the middle of a retailer visit simply didn't do it. They took the order on WhatsApp and transcribed it later. I reduced the order capture flow to 5 taps (product → quantity → confirm) and extended session persistence to 12 hours. That single change was responsible for approximately 50% of the adoption improvement.",
+      "Beyond product: we ran a 3-week adoption sprint with the regional sales manager — daily digital leaderboard showing capture rate per agent, a small incentive for the top performer each week, and a dedicated Slack channel where agents could flag tool issues directly to me. We also ran peer training — our highest-adoption agents trained lower-adoption colleagues. Adoption tools aren't just product problems, they're change management problems. The product is maybe 50% of the solution.",
+      "Phased rollout — 2 pilot districts first with the most digitally comfortable agents (identified by the regional manager), monitored for 3 weeks, then expanded to 4 more districts after positive signal, then full rollout. This built internal advocates — agents in the pilot districts became trainers for the next wave. A big-bang rollout would have overwhelmed support capacity and put every friction point in front of every user simultaneously.",
+      "Offline-first architecture — orders queued locally on device storage and synced to server when connectivity restored. Field agents in Tier 3 markets told us connectivity dropped 30-40% of their workday, especially in basement-level Kirana shops and markets with poor 4G signal. The offline mode was non-negotiable. We used a local SQLite-equivalent on mobile to queue transactions, with a clear 'syncing' indicator so agents knew which orders were confirmed vs pending.",
+      "Promotional scheme safeguards: spend limit per territory and per retailer — any order that would exceed the scheme budget triggered a manager approval workflow before confirmation. Anomaly detection — if a single retailer's scheme order was 3x their trailing 30-day average, it triggered a soft review flag. Scheme code expiry — codes were time-limited and single-use per retailer per scheme period. These controls reduced scheme abuse by approximately 60% compared to the manual process.",
+      "The 37% non-adopters split into two groups: older agents (45+) with low smartphone comfort — we addressed this with a 'lite mode' with larger text and fewer options. And multi-brand agents who covered Satya Retail alongside 3-4 competitor brands and used competitor apps as their primary tool — switching cost was too high. The second group is a product-market fit problem, not a UX problem. Solving it would require API integration with competitor platforms or a neutral multi-brand aggregator.",
+      "The scheme calculator was still confusing for multi-tier schemes with bonus SKUs — 'Buy 10 get 5% off, buy 20 get 12% off plus a free product.' Retailers with low numeracy couldn't quickly model their optimal order. I'd simplify it to a single recommendation: 'Order 20 units for the best deal' with the saving clearly displayed, rather than showing all tiers simultaneously. I knew this was an issue but ran out of sprint capacity before the engagement ended.",
+      "ROI of B2B platform adoption: more digital orders = less field agent time on manual transcription = more retailer visits per day = more order volume per territory. We modelled it as: each 1% increase in digital capture rate freed 12 minutes per agent per day across the territory. At ₹X per hour agent cost, that translated to direct cost savings. Additionally, digital orders had 40% fewer fulfilment errors than manually transcribed orders — reducing the cost of error correction.",
+      "B2B PM differs from B2C in several key ways: the buyer and user are often different people (procurement vs employee), the decision-making is rational and process-driven rather than emotional, the switching cost is much higher, and adoption is mandatory rather than optional in many cases. This project was interesting because the 'buyer' was Satya Retail's sales leadership, the 'user' was field agents, and the 'customer' was the retailer. Three different stakeholders with three different needs — classic B2B complexity that doesn't exist in Le Marche's B2C context.",
+      "For 30% smartphone penetration: build a feature phone USSD-based ordering system (press *123# to place order via SMS-like interface), supplement with a WhatsApp Business API integration (structured order forms via WhatsApp which works on low-end Android), and use voice ordering for illiterate users. The principle: meet users where their technology is, not where you wish it was. A mobile app is wrong for this audience segment.",
+      "Promotional scheme in FMCG: a time-limited incentive offered by the brand/distributor to the retailer for purchasing a minimum quantity. Types: volume discount (buy 10 get 5% off), free goods (buy 10 get 1 free), visibility incentives (extra discount for displaying at eye level), and payment incentives (extra 2% for early payment). Retailers think about schemes in terms of net effective price and cash flow — a 10% discount today is worth more than a 10% discount next month due to capital cost.",
+      "The rule I applied: every feature must pass the 'one-thumb test' — can a field agent complete this action with one thumb while holding a phone in direct sunlight, with their attention divided? This eliminated multi-tap flows, tiny tap targets, and any feature requiring two-hand interaction. Feature richness was defined by user workflow, not product vision. I cut 6 features that were in the spec because they didn't pass the field reality test.",
+      "Usage metrics (DAU, orders captured) tell you adoption. Business outcome metrics tell you value: order accuracy rate (are digital orders fulfilled at higher accuracy?), order velocity (time from retailer visit to order confirmation), retailer reorder frequency (are digitally engaged retailers ordering more often?), and scheme uptake rate (are retailers claiming more scheme value through the app?). All four improved — that's the difference between a tool being used and a tool creating business value.",
+      "I'd have built the scheme management as a configurable layer earlier — so Satya Retail's ops team could launch new scheme types without engineering involvement. The competitor likely won on flexibility. We hardcoded too many scheme structures in v1. The lesson: promotional tooling must be a platform with a scheme builder, not a collection of hard-coded scheme types. Configuration flexibility is the moat in B2B SaaS, not features.",
+      "Consumer apps: optimise for emotional engagement, discovery, and delight. Retailer/B2B apps: optimise for speed, reliability, and task completion. A consumer app can afford a 3-second load if the experience is beautiful. A B2B tool used 50 times a day cannot. Design principles for retailer apps: information density over whitespace, persistent navigation (not hamburger menus that are slower to access), offline-first, and data freshness indicators so users know if what they're seeing is current.",
+      "Channel conflict risk: if Le Marche sells the same SKUs at lower prices D2C than it wholesales to retailers, retailers feel undercut and de-prioritise the brand. The Satya Retail platform actually exacerbated this risk because it gave retailers visibility into D2C pricing. The mitigation: different SKU assortment strategy — D2C carries premium/exclusive products, retail carries standard products. Price parity on overlapping SKUs is enforced contractually.",
+      "Sales leadership initially framed the FoS tool as 'tracking for accountability' which agents resented. I repositioned it as 'tools that make your job easier' — the check-in feature was presented as reducing dispute resolution time (no more 'did you visit this retailer?' arguments), not as surveillance. The scheme calculator was positioned as 'making you the expert in the retailer conversation.' Agent incentives for digital adoption reinforced the value narrative. Leadership needed to communicate the 'easier, not watched' framing consistently.",
+      "AI-powered FoS platform in 5 years: AI assistant that listens to the retailer conversation and automatically logs visit notes, product requests, and objections. Real-time inventory visibility at the retailer's point-of-sale to understand sell-through rates and trigger replenishment recommendations. AI-generated next-best-action for each retailer visit (which scheme to pitch, which product to upsell based on their purchase history). Voice-first interface for hands-free operation. Predictive visit scheduling based on retailer order patterns and seasonal demand."
+    ]
+  },
+  {
+    id: "nga",
+    label: "NGA · AI",
+    title: "NextGenAudit · Azure OpenAI · AI-Powered Audit",
+    context: "Spearheading AI-powered scoping and inherent risk assessment workflows on PwC's NextGenAudit platform, leveraging Azure OpenAI for global FY26 rollout.",
+    questions: [
+      { q: "What is NextGenAudit and what problem does it solve?", diff: "basic", type: "Product" },
+      { q: "What is Azure OpenAI and why is it used instead of standard OpenAI?", diff: "basic", type: "Technical" },
+      { q: "What is inherent risk assessment in an audit context?", diff: "basic", type: "Business" },
+      { q: "What does 'scoping' mean in an audit workflow?", diff: "basic", type: "Business" },
+      { q: "What specifically did you own on this platform?", diff: "basic", type: "Product" },
+      { q: "How does AI help with account significance classification?", diff: "mid", type: "Technical" },
+      { q: "What are the data privacy and compliance implications of using AI in audit?", diff: "mid", type: "Business" },
+      { q: "How do you validate the accuracy of an AI recommendation in a compliance context?", diff: "mid", type: "Product" },
+      { q: "What is a PBI (Product Backlog Item) and how did you break down features into PBIs?", diff: "mid", type: "Product" },
+      { q: "What does global rollout across 149 countries actually require from a product perspective?", diff: "mid", type: "Product" },
+      { q: "How do you write acceptance criteria for an AI feature that produces probabilistic outputs?", diff: "hard", type: "Technical" },
+      { q: "What's the risk of AI hallucination in an audit context and how do you mitigate it?", diff: "hard", type: "Product" },
+      { q: "How do you get auditors to trust AI recommendations when their professional liability is on the line?", diff: "hard", type: "Leadership" },
+      { q: "What's the difference between Azure OpenAI and Azure AI Document Intelligence? When would you use each?", diff: "hard", type: "Technical" },
+      { q: "How do you measure the quality of an AI-powered workflow before it goes live?", diff: "hard", type: "Analytics" },
+      { q: "The platform hasn't launched yet. How do you talk about impact on a resume without fabricating outcomes?", diff: "grill", type: "Leadership" },
+      { q: "What's your biggest concern about AI in audit from a professional ethics standpoint?", diff: "grill", type: "Business" },
+      { q: "How would you prioritise between a feature that reduces auditor effort by 30% vs one that improves audit quality by 10%?", diff: "grill", type: "Product" },
+      { q: "What happens when the AI recommends one account significance classification and the auditor disagrees?", diff: "grill", type: "Product" },
+      { q: "How does NGA compete with other Big 4 audit technology platforms?", diff: "grill", type: "Business" },
+      { q: "What is ISA/AICPA and why does it matter for the platform's global design?", diff: "grill", type: "Business" },
+      { q: "How do you handle model drift in a live AI system used for regulatory compliance?", diff: "grill", type: "Technical" },
+      { q: "If an AI-assisted audit misses a material misstatement, who is liable?", diff: "grill", type: "Business" },
+      { q: "How would you design the user experience for an AI recommendation that the user might override?", diff: "grill", type: "Product" },
+      { q: "What are the biggest differences between being a PM at a startup vs being a PM-consultant embedded at PwC?", diff: "grill", type: "Leadership" }
+    ],
+    answers: [
+      "NextGenAudit (NGA) is PwC's internal AI-powered audit platform designed to transform how audit teams conduct engagements. It digitises and automates the audit lifecycle — from initial scoping and risk assessment through execution and sign-off. The core problem: current audit processes are heavily manual, document-based, and inconsistent across geographies. NGA consolidates tools, standardises workflows, and embeds AI to improve efficiency, quality, and compliance consistency across PwC's global network.",
+      "Azure OpenAI is Microsoft's enterprise deployment of OpenAI's models (GPT-4, etc.) hosted on Azure infrastructure with enterprise security guarantees — data doesn't leave Azure's environment, no training on client data, and compliance with SOC2, GDPR, and other enterprise standards. For PwC handling confidential client financial data, standard OpenAI's cloud service is not compliant. Azure OpenAI provides the same AI capabilities within a compliant, air-gapped-style enterprise boundary.",
+      "Inherent risk assessment is the process of evaluating the risk that a material misstatement exists in a financial statement account or disclosure, before considering any internal controls. Auditors assess: the nature of the account (complexity, subjectivity), industry factors (volatility, regulatory environment), and entity factors (management integrity, business model). Higher inherent risk means more audit work is required. AI helps by synthesising information across the engagement to produce a structured risk rating recommendation.",
+      "Scoping in audit means determining which accounts and disclosures are 'in scope' — significant enough to require audit procedures. The auditor looks at a trial balance (list of all accounts with balances), identifies which accounts are material to the financial statements, assesses the risks associated with those accounts, and determines what audit evidence is needed. Scoping decisions shape the entire audit engagement — under-scoping misses risks, over-scoping wastes resources.",
+      "I was the Product Owner for the Scoping and Inherent Risk Assessment value stream. My specific work: taking feature-level requirements (defined by senior stakeholders and architects) and breaking them down into Product Backlog Items with clear acceptance criteria, user stories, and definition of done. I ran sprint planning, backlog refinement, and UAT coordination for this stream. I didn't define the product strategy — that sat above me — but I owned the delivery execution for my stream.",
+      "AI assists account significance classification by: pulling trial balance data and mapping accounts to prior year classifications, analysing account balances relative to materiality thresholds, and synthesising qualitative information from planning documents to flag accounts with elevated risk characteristics. The AI produces a recommendation (Significant, Not Significant but Material, Not Significant) with a reasoning summary. The auditor reviews and either accepts or overrides. Key principle: AI recommends, auditor decides.",
+      "Audit data is among the most sensitive corporate information — it contains client financial data, risk assessments, and potential findings that could move markets. Using AI in this context requires: data residency guarantees (client data stays in the same geography as the client's audit), no model training on client data, audit trail of all AI recommendations and human overrides, and compliance with ISQM (International Standard on Quality Management) and local regulatory requirements.",
+      "For AI in compliance contexts, accuracy validation means: precision and recall testing against historical audit decisions (does the AI classify accounts the same way experienced auditors would?), false negative analysis (does the AI ever recommend 'not significant' for accounts that were material?), and expert review panels — senior audit partners review a sample of AI recommendations for calibration. The acceptance bar is not 'AI is right every time' but 'AI recommendations, reviewed by a human, produce better outcomes than human alone.'",
+      "A PBI (Product Backlog Item) is a discrete unit of work that can be completed in a sprint. Feature-to-PBI breakdown process: take the feature, identify the smallest independently testable slice of functionality, write a user story ('As an auditor, I want to see account significance recommendations so that I can review and confirm them without manual calculation'), add acceptance criteria (specific, testable conditions for 'done'), estimate complexity, and sequence based on dependencies. I wrote approximately 200 PBIs across my value stream.",
+      "Global rollout across 149 countries requires: multi-language support (at minimum UI translation, at best AI responses in local language), compliance with local audit standards (ISA globally, AICPA for US, local variants for specific jurisdictions), data residency configuration (EU data must stay in EU Azure regions), role-based access reflecting different country regulatory requirements, and a localisation framework so territory-specific content can be managed without engineering involvement.",
+      "For probabilistic AI outputs in compliance, acceptance criteria must specify: the confidence threshold below which the AI should flag uncertainty rather than recommend, the mandatory human review step before any AI recommendation is actioned, the audit trail requirement (log every AI recommendation, every override, and the reasoning), and the edge case handling (what happens when the AI cannot produce a recommendation). You cannot write acceptance criteria like 'AI is 100% accurate' — you write criteria for the human-AI interaction quality.",
+      "Hallucination in audit AI means the model generates a plausible-sounding but incorrect risk assessment or account classification. Mitigation: retrieval-augmented generation (RAG) architecture — the AI can only cite information that exists in the engagement's actual documents, reducing confabulation. Human-in-the-loop mandatory for all significant decisions. Explicit uncertainty communication — the AI must display confidence levels and source citations. And a 'red team' process where audit quality partners specifically try to find cases where the AI produces plausible but wrong recommendations.",
+      "Trust-building with auditors required three things: transparency (auditors can see exactly what data the AI used to produce each recommendation and click through to the source), overrideability (the AI never makes a final decision — every recommendation requires auditor confirmation), and accuracy validation (showing partners the back-testing results: AI recommendations matched experienced auditor decisions in 87% of cases in our validation set). The framing was always 'AI as a junior team member who does the first pass analysis' not 'AI replaces auditor judgment.'",
+      "Azure OpenAI is a large language model service — it processes and generates natural language text, interprets complex documents, and produces structured outputs from unstructured data. Azure AI Document Intelligence is a specialised service for document parsing — extracting structured data from forms, tables, and PDFs with high accuracy. In audit: Document Intelligence would extract trial balance data from a client-uploaded PDF; OpenAI would then analyse that structured data to produce risk assessments and recommendations. They work in combination.",
+      "Quality measurement before launch: offline evaluation against a golden dataset of 50 historical audit engagements where we know the correct scoping decisions. Measure precision (of accounts AI flagged as significant, what % actually were?), recall (of actually significant accounts, what % did AI catch?), and auditor override rate in UAT (high override rates indicate the AI isn't calibrated to auditor judgment). We target a recall rate above 95% for significant account identification — missing a significant account is more dangerous than over-flagging one.",
+      "Honest framing: I don't claim outcomes the platform hasn't delivered yet. I frame it as scope, complexity, and AI domain ownership. The truthful signals: the work is real (Azure OpenAI integration, global scale), my contribution is real (PBI ownership, acceptance criteria, UAT coordination), and the AI technology context is legitimate. On a resume, pre-launch work should be framed as 'spearheading' or 'building' not 'delivered' or 'improved by X%'. The interviewer will ask about it and I give exactly this honest answer.",
+      "Biggest ethics concern: automation bias — auditors increasingly rubber-stamp AI recommendations rather than exercising independent judgment. If the AI is wrong and the auditor doesn't scrutinise, you get an audit failure. This is more dangerous than no AI at all, because it gives a false confidence that work was done. The product response: make override as easy as acceptance (no extra friction to disagree with AI), require explicit auditor commentary when accepting high-risk recommendations, and track override rates — declining override rates might indicate over-reliance.",
+      "I'd consider: who is the primary beneficiary and what is the risk profile. 30% efficiency gain frees auditor time for higher-value work — quantifiable, immediate, high confidence. 10% quality improvement might prevent a missed misstatement — unquantifiable benefit unless you can model the cost of an audit failure. In most cases I'd prioritise quality improvement in a regulated context where a quality failure has catastrophic consequences (regulatory action, liability) vs an efficiency gain that has bounded value. But I'd also ask: can we deliver efficiency first to build platform trust, then layer quality features?",
+      "The override workflow is critical and must be designed carefully: the auditor sees the AI recommendation with reasoning, they can accept (one click) or override (requires selecting a reason from a structured list plus a free-text comment). Override reasons are logged, reviewed by the engagement partner, and fed back to the AI calibration process. The key design principle: override must never feel like challenging the machine — it must feel like exercising professional judgment, which is exactly what it is.",
+      "I can't speak to competitor platforms specifically as that information is internal to those firms. What I can say: PwC's differentiator for NGA is the integration of AI across the full audit lifecycle, not just point solutions. Most firm-specific tools address one phase (documentation, or risk assessment, or quality review). NGA's ambition is an end-to-end connected platform where insights from planning inform execution and execution informs next year's planning. The network effect of connected audit data across engagements is the long-term moat.",
+      "ISA (International Standards on Auditing) are issued by the IAASB and govern audits in most countries globally. AICPA auditing standards (GAAS) govern US audits. Both cover similar ground — risk assessment, evidence requirements, documentation standards — but with specific procedural differences. NGA must support both because PwC audits clients in US (AICPA) and internationally (ISA). This means the scoping workflow has conditional logic: the same risk assessment step has different documentation requirements and terminology depending on the applicable standard.",
+      "Model drift in a live compliance AI system: the model's recommendations become less accurate over time as accounting standards change, new risk patterns emerge, or the underlying data distribution shifts. Mitigation: establish a baseline accuracy benchmark at launch, monitor override rate as a proxy metric (rising override rate suggests the model is drifting from auditor judgment), quarterly re-validation against recent audit outcomes, and a formal model review process whenever a major standard change occurs (e.g., new IFRS 17 standard).",
+      "Professional liability for audit failure remains with the auditor and the audit firm — AI is a tool, not a licensed professional. The audit partner who signs the opinion is legally responsible regardless of what tools were used. This is clear in current professional standards. The risk AI creates: it may be used as a defence ('the AI said it was low risk') which regulators are unlikely to accept. The product must make clear through UX and documentation that AI recommendations are inputs to professional judgment, not substitutes for it.",
+      "Effective AI recommendation UX: show the recommendation prominently with a confidence indicator (High/Medium/Low), immediately below show the 3-5 key factors that drove the recommendation with links to source evidence, provide an 'Accept' button and an 'Override' button at equal visual weight, make the override flow require only 2 steps (reason category + comment), and show an aggregate view of how many other auditors on similar engagements accepted vs overrode this type of recommendation. Social proof from peer auditors increases acceptance of accurate recommendations.",
+      "Startup PM: you define the strategy, own the roadmap, make final prioritisation calls, work with a small committed team, have high ambiguity and high ownership. Consulting-embedded PM: you execute someone else's strategy, work within an enterprise change management process, have multiple stakeholders above you in the hierarchy, and your 'team' includes client stakeholders who have other priorities. The consulting model required stronger influence-without-authority skills — I had to build credibility through data and relationships rather than org chart position. The startup model requires more strategic judgment but less stakeholder navigation."
+    ]
+  },
+  {
+    id: "epaylater",
+    label: "ePayLater",
+    title: "BNPL · Checkout Funnel · Credit Risk",
+    context: "MBA internship at ePayLater — analysed 3 BNPL checkout funnels, conducted 12+ customer interviews, built SQL dashboards tracking 5 credit-risk metrics.",
+    questions: [
+      { q: "What is BNPL and how does ePayLater's model work?", diff: "basic", type: "Business" },
+      { q: "What are the 3 checkout funnels you analysed and what did you find?", diff: "basic", type: "Analytics" },
+      { q: "What were the 5 credit-risk metrics you tracked?", diff: "basic", type: "Analytics" },
+      { q: "What did you learn from the 12+ customer interviews?", diff: "basic", type: "Product" },
+      { q: "How did you build SQL dashboards — what was the data source and what tool?", diff: "mid", type: "Technical" },
+      { q: "What is a credit risk model and how does it differ from a recommendation model?", diff: "mid", type: "Technical" },
+      { q: "What onboarding gaps did your customer interviews uncover?", diff: "mid", type: "Product" },
+      { q: "How does BNPL checkout differ from a regular payment checkout?", diff: "mid", type: "Product" },
+      { q: "What is repayment prioritisation and why does it matter for a BNPL product?", diff: "hard", type: "Business" },
+      { q: "How do you measure the health of a BNPL loan book?", diff: "hard", type: "Business" },
+      { q: "What is the regulatory framework for BNPL in India?", diff: "hard", type: "Business" },
+      { q: "How do you balance conversion rate optimisation with credit risk in BNPL checkout?", diff: "grill", type: "Business" },
+      { q: "What's the difference between a hard credit check and a soft credit check?", diff: "grill", type: "Business" },
+      { q: "How would you design a BNPL product for users with no credit history?", diff: "grill", type: "Product" },
+      { q: "BNPL has come under regulatory scrutiny globally. What's your view on responsible lending in product design?", diff: "grill", type: "Business" }
+    ],
+    answers: [
+      "BNPL (Buy Now Pay Later) lets consumers make purchases and pay in instalments, typically 0% interest for short tenors. ePayLater specifically offers working capital credit to small businesses and B2B buyers — not consumer BNPL. Their model: businesses can purchase inventory on credit, pay within 15-30 days, with credit limits set by a proprietary risk model. The product sits at the intersection of fintech credit and B2B commerce.",
+      "The three funnels: merchant checkout (business buyer on a merchant's platform), ePayLater's own app checkout, and a white-label checkout embedded in partner platforms. Key finding: the merchant checkout had 34% higher drop-off at the credit approval step vs the app checkout. Root cause: in merchant checkout, credit approval happened synchronously during checkout — 8-12 second wait created abandonment. App checkout pre-approved the limit, so checkout was instantaneous.",
+      "The 5 metrics: 30-day delinquency rate (% of loans with payment overdue by 30+ days), NPA rate (non-performing assets — loans overdue 90+ days), Days Sales Outstanding (average days from invoice to payment), utilisation rate (credit limit used vs limit granted — high utilisation can indicate stress), and vintage analysis by cohort (repayment performance of loans originated in the same week/month). Together these gave a health dashboard of the loan book.",
+      "Key findings from 12 interviews: users found the credit limit setting process opaque — they didn't understand why their limit was ₹50K not ₹1L. Repayment was the most anxious part of the experience — users feared missing payment due to unclear notification timing. And trust was the biggest adoption barrier — small business owners were uncomfortable sharing GST and bank data with a startup they'd never heard of. All three insights influenced the repayment flow prioritisation.",
+      "Data source was ePayLater's PostgreSQL transaction database. I wrote SQL queries to calculate each metric, then visualised in Metabase (a BI tool). The dashboard refreshed daily. Key technical challenge: vintage analysis required a self-join on the loans table to compare cohort performance at equivalent time points. I learned this pattern from the data team and implemented it independently by week 3 of the internship.",
+      "Credit risk model predicts the probability of default — will this borrower repay? It uses historical repayment data, financial signals, and behavioural signals as features. A recommendation model predicts preference — will this user like this product? Both use supervised learning but with very different outcome variables and error cost asymmetry. In credit risk, a false negative (approving a defaulter) costs real money; in recommendation, a false negative (not recommending something the user would like) just costs an engagement opportunity.",
+      "Three gaps: limit transparency (users didn't understand the factors behind their credit limit), repayment scheduling (users wanted to set autopay but the feature was buried 3 levels deep in settings), and KYC friction (document upload required physical bank statements — users wanted a net banking integration for automated statement fetch). The repayment scheduling finding directly influenced the product team to prioritise the autopay surface redesign.",
+      "Regular payment checkout: user selects payment method → enters card/UPI details → confirms. BNPL checkout: user selects BNPL → system checks credit eligibility in real-time → if approved, order is placed and credit is extended → user sees a repayment schedule. The key difference: BNPL checkout requires a credit decision in the flow, which adds latency and a conditional branch (approved vs declined). Designing for the declined path gracefully (offer alternatives, explain why, provide upgrade path) is as important as the approved path.",
+      "Repayment prioritisation means: when a borrower has multiple outstanding invoices, which gets repaid first? BNPL platforms typically apply FIFO (oldest invoice first) to minimise ageing. But from a risk perspective, you want to ensure the highest-risk accounts prioritise repayment. The product decision: show users a repayment queue that defaults to FIFO but allows reordering, with AI recommendations on which invoices to prioritise based on their supplier relationship value.",
+      "BNPL loan book health: delinquency rate by vintage (newer vintages should perform similarly to or better than older ones — deteriorating newer vintages signal underwriting model degradation), NPA coverage ratio (provisions held against NPAs — a regulatory requirement), credit utilisation distribution (most borrowers using 60-80% of limit is healthy; everyone maxed out signals stress), and repeat utilisation rate (borrowers using BNPL across multiple purchase cycles — indicates product-market fit and manageable credit behaviour).",
+      "RBI (Reserve Bank of India) has been tightening BNPL regulation. Key frameworks: BNPL providers must be registered as NBFCs (Non-Banking Financial Companies) or partner with one. First Loss Default Guarantee (FLDG) arrangements between BNPL platforms and bank partners were restricted in 2022. KYC requirements apply to all credit products. The regulatory trend is toward treating BNPL like any other lending product — which increases compliance burden but also increases consumer protection.",
+      "The tension: a frictionless checkout that maximises conversions will approve borderline borrowers who have higher default risk. A friction-heavy checkout with rigorous checks protects the loan book but kills conversion. The balance: use a soft credit check pre-approval (no hard inquiry, faster, less friction) to approve high-confidence borrowers instantly, route medium-confidence borrowers through a lightweight verification step, and decline only clear high-risk profiles. This preserves conversion for 80% of users while managing risk on the 20% who need more scrutiny.",
+      "Hard credit check: a formal inquiry that appears on the borrower's credit report, can temporarily lower their credit score, and requires explicit consent. Used for significant credit decisions. Soft credit check: an inquiry that doesn't affect the borrower's score, can be done without explicit consent in some jurisdictions, used for pre-qualification and eligibility checks. Best practice for BNPL: soft check during initial eligibility assessment, hard check only when a credit limit increase is requested or a large transaction is initiated.",
+      "BNPL for thin-file users (no credit history): use alternative data signals — GST filing regularity, UPI transaction frequency and volume, business vintage (how long the business has been operating), and digital payment history. Start with a small credit limit (₹5,000-10,000), monitor repayment behaviour for 90 days, then use that repayment history to build a proprietary credit score. The product design principle: give users a way to earn trust rather than requiring pre-existing trust.",
+      "Responsible lending in product design means: surfacing the total cost of credit clearly before commitment (not buried in T&Cs), defaulting to the most conservative repayment option, sending payment reminders through multiple channels proactively, making the exit path (repay and close) as easy as the entry path (apply and draw), and designing against patterns that encourage over-borrowing (don't gamify limit increases as achievements). My view: product teams in fintech have a direct responsibility to design against debt traps, especially for small business borrowers who may not be financially sophisticated."
+    ]
+  },
+  {
+    id: "zebi",
+    label: "Zebi",
+    title: "Software Engineering · Blockchain · APIs",
+    context: "3.5 years at Zebi Data — built verification APIs, migration pipelines, optimised throughput 12×, developed shared infrastructure, and onboarded 5M+ verifications.",
+    questions: [
+      { q: "What did Zebi Data do and what was your role?", diff: "basic", type: "Product" },
+      { q: "What is a verification API and what problem does it solve?", diff: "basic", type: "Technical" },
+      { q: "What does 'reducing API response time below 2 seconds' mean practically for users?", diff: "basic", type: "Technical" },
+      { q: "What is Redis and why did you use it for caching?", diff: "mid", type: "Technical" },
+      { q: "What is blockchain and why is it useful for document verification?", diff: "mid", type: "Technical" },
+      { q: "What does 12× throughput improvement mean and why does it matter?", diff: "mid", type: "Technical" },
+      { q: "What is a data migration pipeline and what are the risks?", diff: "mid", type: "Technical" },
+      { q: "How did you ensure zero data loss during the 800K record migration?", diff: "hard", type: "Technical" },
+      { q: "What is asynchronous processing and how does it improve throughput?", diff: "hard", type: "Technical" },
+      { q: "How does your engineering background make you a better PM?", diff: "hard", type: "Leadership" },
+      { q: "What is the difference between latency and throughput? How do you optimise for each?", diff: "hard", type: "Technical" },
+      { q: "You went from software engineer to PM. What was the hardest thing to unlearn?", diff: "grill", type: "Leadership" },
+      { q: "If you were PM for Zebi's verification product, what would you have built differently?", diff: "grill", type: "Product" },
+      { q: "How do you communicate technical complexity to non-technical stakeholders?", diff: "grill", type: "Leadership" },
+      { q: "What's the product-market fit risk of blockchain verification vs traditional database verification?", diff: "grill", type: "Business" }
+    ],
+    answers: [
+      "Zebi Data built a blockchain-based platform for government and enterprise document verification. Primary use case: verifying the authenticity of educational certificates, identity documents, and government records. The problem: document fraud is pervasive — fake degrees, forged certificates. Zebi's solution: store a cryptographic hash of authentic documents on blockchain, allowing any verifier to check authenticity without accessing the original document. I joined as a software engineer and grew to senior engineer, building the API and data infrastructure layers.",
+      "A verification API allows an external system (employer, university, government body) to programmatically check whether a document is authentic. Request: send a document hash or ID. Response: authentic/not authentic, issuing institution, date of issue, and any relevant metadata. The business value: instead of manually calling a university to verify a degree (takes days), an employer's HR system can verify instantly via API call. This was the core product — we sold API access to enterprises and government bodies.",
+      "Below 2 seconds means the API responds within 2 seconds of receiving a request — fast enough that a user waiting for verification doesn't experience a perceptible delay. Before optimisation, response times were 4-8 seconds for complex queries involving multiple blockchain lookups. At 4-8 seconds, enterprise systems would often timeout and mark the verification as failed. Below 2 seconds eliminated timeouts and made integration into real-time workflows (like instant background checks) viable.",
+      "Redis is an in-memory data store used for caching frequently accessed data. In our context: verification requests for the same document hash would hit the blockchain ledger each time — slow and expensive. By caching the verification result in Redis with a 24-hour TTL, subsequent requests for the same document hash returned in under 50ms instead of 2+ seconds. The trade-off: cached results might be stale if a document was invalidated, which we addressed by setting appropriate TTLs and building a cache invalidation webhook.",
+      "Blockchain is a distributed ledger where data is stored in cryptographically linked blocks across multiple nodes — making it tamper-evident. If you store a document's hash on blockchain, any subsequent alteration to the original document changes its hash, which won't match the stored value. This makes blockchain ideal for document verification: the verification is trustless (doesn't require trusting any single authority) and tamper-proof. The trade-off vs traditional database: slower writes, higher infrastructure cost, but much higher trust guarantees.",
+      "Before: the platform processed 1,500 blockchain events per second — sufficient for early scale. After: 19,000 events/second — a 12× improvement. This mattered because government contracts required processing millions of verifications in batch windows (end of academic year, mass hiring seasons). At 1,500 events/second, a 5 million record batch would take 55 minutes. At 19,000/second, the same batch completes in under 5 minutes — making real-time bulk verification viable.",
+      "A migration pipeline moves data from one system or format to another systematically. Our migration: historical government records (800K+ documents) existed in a legacy SQL database and needed to be migrated to the blockchain verification system. Risks: data corruption during transformation, duplicate records from partial runs, loss of records if the pipeline fails mid-way. We mitigated with: idempotent design (running the pipeline twice produces the same result), reconciliation counts at each stage, and a rollback checkpoint every 50K records.",
+      "Zero data loss assurance: pre-migration record count in source (800,247 records). Post-migration verification count on blockchain (must match exactly). Row-level checksum comparison — we computed a hash of key fields for each record and verified the hash matched after migration. Any record where hash didn't match was flagged for manual review. We also ran a random 5% sample spot-check comparing source and destination record fields. Migration completed with 100% record integrity on first run.",
+      "Synchronous processing: each verification request waits in a queue, is processed one by one, and the client waits for the response. Throughput limited by how fast each request completes. Asynchronous processing: requests are queued and processed in parallel across multiple worker threads/processes. A client submits a request and gets a job ID, then polls for or receives a webhook with the result. This allows 10x-50x more concurrent requests. Our throughput improvement came from converting batch verification from synchronous to async multi-threaded processing.",
+      "Three specific ways: first, I can read code and understand technical trade-offs without needing a translator — when engineers say 'this will take 3 weeks because we need to refactor the data model', I understand what that means and can challenge or accept the estimate intelligently. Second, I write much better acceptance criteria — I know what ambiguous requirements look like from an engineering perspective and I write specs that eliminate ambiguity upfront. Third, I earn engineering trust faster — engineers take my prioritisation decisions more seriously when they know I've shipped production code.",
+      "Latency is the time taken for a single request-response cycle — the speed of one operation. Throughput is the number of operations completed per unit of time — the volume capacity. They're related but optimised differently. To reduce latency: caching, database query optimisation, reducing network hops, CDN for static assets. To improve throughput: horizontal scaling (more servers), async processing, connection pooling, batch processing. The nuance: sometimes improving throughput increases latency per request (batching delays individual responses). The right balance depends on use case — real-time verification needs low latency; batch document processing needs high throughput.",
+      "The hardest thing to unlearn: the instinct to solve problems by building. As an engineer, when you see a problem, you build a solution. As a PM, often the right answer is: don't build this, change the process, or build something much simpler. The second hardest: letting go of implementation details. I spent the first 6 months of my PM career suggesting architectural approaches in PRDs — which was overstepping and slowed engineering down. Learning to specify the 'what' and 'why' and trust engineers on the 'how' was the key mindset shift.",
+      "If I were PM for Zebi's verification product, I would have: built a self-service API portal (documentation, sandbox, API key management) so enterprises could onboard without sales involvement — the current enterprise sales model was too slow. Invested in a consumer-facing verification tool — a QR code or URL that any person could use to verify their own document — which would drive organic adoption and network effects. And built a webhook-based event system so enterprise clients could build real-time verification into their workflows without polling.",
+      "My approach: start with the 'so what' for their role. To a sales leader: 'Our verification API reduces your enterprise client's hiring time by 3 days — that's the value proposition.' To a CFO: 'Infrastructure costs increased 15% because we added redundancy — it reduced downtime by 40% which costs ₹X per incident avoided.' The principle: translate technical facts into outcomes that matter to the audience's priorities. Never lead with the technical detail — lead with the business implication, then offer the technical detail as supporting evidence if they want it.",
+      "The PMF risk of blockchain verification vs traditional database: blockchain is slower, more expensive, and more complex to maintain than a traditional database. The unique value — tamper-evidence and trustlessness — only matters when the verifier doesn't trust the issuer. For most enterprise use cases, both parties trust each other and a signed digital certificate from a database would suffice. Blockchain's PMF is specifically in cross-border verification (different legal jurisdictions, no common trust anchor) and government-to-government verification. For corporate HR verification within India, a government-signed digital certificate might have been a simpler and faster product."
+    ]
+  },
+  {
+    id: "general_pm",
+    label: "General PM",
+    title: "General Product Management Concepts",
+    context: "Cross-cutting PM questions covering strategy, prioritisation, stakeholder management, metrics, and leadership — not tied to a specific bullet.",
+    questions: [
+      { q: "Walk me through how you prioritise a product backlog.", diff: "basic", type: "Product" },
+      { q: "What is a PRD and what does a good one contain?", diff: "basic", type: "Product" },
+      { q: "What is the difference between output, outcome, and impact?", diff: "basic", type: "Product" },
+      { q: "How do you handle a situation where engineering says a feature will take 8 weeks but the business wants it in 2?", diff: "mid", type: "Leadership" },
+      { q: "What metrics would you define for a new e-commerce feature at launch?", diff: "mid", type: "Analytics" },
+      { q: "How do you decide when to build vs buy vs partner?", diff: "mid", type: "Product" },
+      { q: "What is North Star metric and how do you choose one?", diff: "mid", type: "Analytics" },
+      { q: "How do you manage stakeholders who have conflicting priorities?", diff: "hard", type: "Leadership" },
+      { q: "What is the difference between discovery and delivery in product management?", diff: "hard", type: "Product" },
+      { q: "How do you measure product-market fit?", diff: "hard", type: "Analytics" },
+      { q: "Describe a time you made a wrong product decision. What happened and what did you learn?", diff: "hard", type: "Leadership" },
+      { q: "How do you know when to kill a feature?", diff: "hard", type: "Product" },
+      { q: "What's your framework for writing user stories?", diff: "grill", type: "Product" },
+      { q: "How do you balance technical debt vs new feature development?", diff: "grill", type: "Product" },
+      { q: "If your DAU drops 20% suddenly, walk me through how you diagnose it.", diff: "grill", type: "Analytics" },
+      { q: "What makes a great PM vs a good PM?", diff: "grill", type: "Leadership" },
+      { q: "How do you approach building a product roadmap from scratch?", diff: "grill", type: "Product" },
+      { q: "What is jobs-to-be-done theory and how do you apply it?", diff: "grill", type: "Product" },
+      { q: "How do you run a sprint retrospective that actually leads to change?", diff: "grill", type: "Leadership" },
+      { q: "What's the most important thing you've learned about product management from your consulting experience?", diff: "grill", type: "Leadership" },
+      { q: "How would you design an OKR system for an e-commerce product team?", diff: "grill", type: "Product" },
+      { q: "What's the difference between qualitative and quantitative user research? When do you use each?", diff: "grill", type: "Product" },
+      { q: "How do you write acceptance criteria that engineers actually find useful?", diff: "grill", type: "Product" },
+      { q: "What's your approach to competitive analysis?", diff: "grill", type: "Business" },
+      { q: "Where do you see product management evolving in the next 5 years given AI?", diff: "grill", type: "Business" }
+    ],
+    answers: [
+      "My prioritisation framework: start with the strategic objective for the quarter (what does the business need to be true in 90 days?), then evaluate each backlog item on three dimensions — impact on that objective, confidence in the estimate, and effort required. I use a modified ICE score: Impact × Confidence ÷ Effort. Items with high impact, high confidence, and low effort go first. I then layer in dependencies (what must be done before this can be done?) and risk (what has the highest uncertainty that we should learn about early?). The output is a sequenced backlog, not just a ranked list.",
+      "A good PRD contains: the problem statement (what user problem are we solving and why it matters now), success metrics (how we'll know it worked), user personas and jobs to be done, functional requirements (what the system must do — not how), edge cases and error states, non-functional requirements (performance, security, accessibility), out of scope (what we're deliberately not building), and open questions. What a bad PRD contains: solution descriptions, UI wireframes embedded in requirements, and implementation details. The PRD should be solution-agnostic — it defines the problem space, not the solution.",
+      "Output is what you build — 'we launched a new checkout flow.' Outcome is the behaviour change that results — 'checkout completion rate improved 18%.' Impact is the business result — 'revenue increased 12% attributable to checkout improvement.' The PM's job is to own outcomes and impact, not just outputs. A team that ships a feature (output) that nobody uses has delivered output without outcome. The prioritisation question should always be: 'what outcome does this output produce?' not 'how fast can we ship this feature?'",
+      "First, understand the constraint — is 8 weeks the engineering estimate for the full scope, or for the scope as defined? Often, a scope conversation can move the timeline. Second, ask what the minimum viable version looks like that could be done in 2-3 weeks — often 80% of the value can be delivered in 20% of the time. Third, if the business deadline is genuinely fixed, have a transparent conversation about trade-offs: what does reduced scope look like, what are the quality risks of compression, and who makes the call on acceptable risk. Fourth, escalate the trade-off to the right decision-maker — the PM's role is to surface the choice clearly, not to silently absorb the pressure.",
+      "For a new e-commerce feature at launch: primary metric (the one number that proves it worked — for a checkout feature, that's checkout completion rate), guardrail metrics (things we must not break — page load time, payment success rate, error rate), leading indicators (early signals before the primary metric moves — add-to-cart rate, feature engagement rate), and qualitative signal (NPS or CSAT from users who interacted with the feature). I define all of these before launch so there's no ambiguity about what success looks like.",
+      "Build when: the capability is core to your competitive differentiation, you need deep customisation, or the build cost over 3 years is lower than licensing cost. Buy when: the capability is not differentiated, a mature solution exists, or speed to market is critical. Partner when: you need access to data or distribution that you can't build, or the capability requires ongoing expertise you don't have. The mistake most companies make: building when they should buy because of the 'not invented here' bias. My test: 'Would we be proud to say this is proprietary technology?' If not, buy.",
+      "A North Star metric is the single metric that best represents the value your product delivers to users and, by extension, to the business. Choice criteria: it must be user-centric (reflects value delivered), it must be leading (moves before revenue moves), and it must be actionable (your team can directly influence it). For Le Marche, I'd argue North Star is 'weekly orders per active user' — it captures both retention (active) and value delivery (orders). Revenue is an outcome of this, not the North Star itself. Vanity metrics like total users fail because they don't reflect value.",
+      "My approach: start by understanding each stakeholder's underlying interest, not their stated position. Two stakeholders who both say 'this is our top priority' often want different things — the sales leader wants a feature to close a specific deal, the growth leader wants the feature to improve retention metrics. Once I understand underlying interests, I look for the synthesis: is there a version of this feature that addresses both? If not, I make the trade-off explicit and escalate to the leader who has authority over both. I never let stakeholder conflicts resolve through ambiguity — they always need an explicit decision.",
+      "Discovery is the process of identifying what to build and validating that it's worth building — customer interviews, problem validation, solution exploration, prototype testing. Delivery is the process of building and shipping what's been decided — sprint planning, engineering execution, QA, release. The distinction matters because they require different skills, different mindsets, and different processes. A common PM failure: conflating the two and doing 'discovery' by writing a PRD based on gut feel, then calling it validated. Real discovery happens before the PRD, not during it.",
+      "PMF indicators: retention curve flattening (users who stay after week 4 continue to stay — the retention curve has an asymptote above zero), organic growth (users referring others without incentives), high engagement among retained users (not just returning but using the product frequently), and qualitative signal (users expressing disappointment at the thought of losing the product — Sean Ellis's 'very disappointed' threshold of 40%). For B2B: contract renewal rate and net revenue retention above 100% are the clearest PMF signals.",
+      "During the Le Marche engagement I pushed to launch a loyalty points feature in the festive season. My reasoning: higher basket sizes during festive, rewards would incentivise repeat purchase. Engineering built it in 3 weeks. Launch: 4% of users enrolled in 30 days, negligible impact on repeat purchase rate. Post-mortem: Le Marche's customer base was deal-seeking, not loyalty-motivated. A discount was more compelling than points accumulation. I had validated the feature with users who said 'yes' to a leading question rather than testing actual behaviour. The lesson: stated preference is not revealed preference. Test with real incentives before building.",
+      "Kill a feature when: usage is below 5% of active users after 90 days of promotion, the maintenance cost exceeds the value it generates, it creates confusion for the majority of users who don't use it, or a better solution now exists. The hard part is killing features that have a vocal minority of power users — I weight silent majority behaviour over vocal minority feedback. Before killing, I give a 60-day warning to heavy users, understand their use case, and ensure an alternative path exists. Then kill cleanly — half-dead features are more costly than absent ones.",
+      "My user story format: As a [specific user type], I want to [accomplish specific goal] so that [the value or benefit]. Three rules: the user type must be specific (not 'user' — 'first-time buyer who hasn't completed KYC'), the goal must be an action not a feature ('view my pending orders' not 'have a pending orders tab'), and the 'so that' must describe real value not technical function. Then I add acceptance criteria as a separate section — testable conditions written as 'Given/When/Then' scenarios that tell engineering exactly what done looks like.",
+      "Technical debt accumulates when engineering shortcuts are taken to ship faster. My framework: treat tech debt like financial debt — it has an interest rate (the ongoing cost of working around it) and a principal (the effort to fix it). High-interest debt (debt that slows down every sprint) gets prioritised like a P1 feature. Low-interest debt (debt in rarely-touched code) can wait. I allocate 20% of sprint capacity to tech debt by default, with flexibility to increase when debt is blocking velocity. The business case: 20% to tech debt now prevents needing to slow down by 40% in 6 months.",
+      "DAU drops 20% — diagnostic process: first, check for data pipeline issues (is the drop real or a tracking failure?). If real: segment by platform (iOS, Android, web) to isolate the surface. Check deployment history — was anything released in the past 48 hours? If yes, correlate release timing with drop. Check by user segment — new vs returning, geo, device. Check funnel stage — did the drop happen at login, onboarding, or engagement? External factors — check if a competitor launched, if there was negative press, or if a social platform algorithm change affected traffic. Within 2 hours I expect to have a hypothesis. Within 24 hours, a root cause. The biggest mistake: jumping to conclusions before segmenting.",
+      "A good PM delivers outcomes. A great PM changes how the team thinks about the problem. Tactically: great PMs write PRDs that make engineering feel smart, not constrained. They give engineers the problem, not the solution. Strategically: great PMs kill features as confidently as they create them — they're as good at saying no as yes. The distinguishing trait I've seen: great PMs are comfortable with ambiguity and can make a 70% confidence decision in 30 minutes, rather than seeking 95% confidence and making a decision in 2 weeks when the opportunity is gone.",
+      "Roadmap from scratch: start with company strategy (where is the business going in 12-18 months?), then customer problems (what are the top 5 problems your target users face?), then competitive landscape (what are competitors solving that you're not?), then internal capabilities (what can you build with current resources?). Plot the intersection: problems worth solving that align with company strategy and build on your capabilities. Sequence by: dependency order, confidence in solution, time-sensitivity of opportunity. A roadmap is a communication tool, not a commitment — it should be updated quarterly.",
+      "Jobs-to-be-done: people 'hire' products to do a job in their life — to make progress toward a goal or overcome a struggle. The insight: the job is stable even when products change. People hired a horse-drawn carriage for the job of 'transport me faster than walking.' They fired it and hired a car when a better solution appeared. Application: when doing user research, instead of asking 'what features do you want?' ask 'what were you trying to do before you found our product?' and 'what job is our product doing for you that you couldn't do before?' This reveals the true competition and the true value proposition.",
+      "A retrospective that actually changes things: make it a structured 30-minute session (not a general venting session), use a specific format — What went well, What didn't, What we'll do differently. Limit 'what we'll do differently' to 3 items maximum — more than 3 is unactionable. Each item must have a specific owner and a specific definition of done. At the start of the next retro, review the 3 commitments from last retro first. The most common retro failure: generating a list of improvements that never get tracked and repeat as complaints every sprint.",
+      "The most important lesson from consulting: decisions happen at the intersection of data and relationships, not data alone. I could walk into any client meeting with perfect analysis, but if I hadn't built trust with the key stakeholders beforehand, the analysis would be rejected on political grounds. The consulting discipline of 'no surprises' — pre-aligning key stakeholders before the formal presentation — is something I apply in every product context. Don't present your roadmap for the first time in the roadmap review. Have 1:1s with every key stakeholder beforehand so the formal meeting is a confirmation, not a negotiation.",
+      "OKR system for an e-commerce product team: Objective should be qualitative and inspiring — 'Make checkout the most trusted experience in D2C grocery.' Key Results should be specific and measurable — 'Improve checkout completion rate from 33% to 42%', 'Reduce payment failure rate from 14% to 8%', 'Achieve NPS of 40 from checkout users'. Rules: 3 KRs per objective maximum, KRs are outcomes not outputs (not 'launch guest checkout' but 'improve completion rate by X%'), set at 70% confidence (if you're 100% confident you'll hit it, it's not ambitious enough), and review monthly not just quarterly.",
+      "Qualitative research: interviews, usability tests, diary studies — surfaces the 'why' behind behaviour, generates hypotheses, uncovers unarticulated needs. Use when: you don't know what the problem is, a metric moved unexpectedly and you need to understand why, or you're designing a novel experience with no precedent. Quantitative research: surveys, analytics, A/B tests — validates hypotheses at scale, tells you 'what' is happening. Use when: you have a hypothesis and need to validate it, or you need to understand the prevalence of a problem. Rule of thumb: use qualitative to generate hypotheses, quantitative to validate them.",
+      "Acceptance criteria that engineers find useful: written as Given/When/Then scenarios (Given a user who hasn't logged in, When they reach checkout, Then they see a guest checkout option). Specific enough that a QA engineer can write a test case directly from the criteria. Includes edge cases (What happens if the API is slow? What if the user is on a 2G connection?). Includes error states (What does the user see when payment fails?). Does NOT include UI specifications — that's the designer's job. Does NOT include implementation approach — that's the engineer's job. My litmus test: if I hand this to QA and they can write test cases without asking me questions, it's good acceptance criteria.",
+      "My competitive analysis framework: direct competitors (same product, same market), indirect competitors (different product, same job-to-be-done), and future competitors (companies that could enter your market with their existing capabilities). For each: features/capabilities (what do they offer?), pricing and positioning, user perception (app store reviews, Twitter, G2), recent moves (funding, launches, acquisitions), and what their roadmap signals. I run a full analysis quarterly and a lightweight pulse check monthly. The output: a competitive positioning map and a 'watch list' of 2-3 moves I'd make if I were them.",
+      "AI will split PM into two archetypes: the 'product engineer' who builds AI-powered features and understands the technology deeply enough to define AI product specs (training data, model behaviour, edge cases), and the 'customer advocate' who focuses entirely on user research and outcome definition, with AI handling the analytical and documentation work. The PM skills that become more valuable: problem framing, stakeholder communication, ethical judgment. The PM skills AI will automate: requirement documentation, competitive analysis, metric tracking. My view: PMs who embrace AI as a tool and focus on the judgment and relationship skills that AI can't replicate will be the highest-value PMs in 10 years."
+    ]
+  },
+  {
+    id: "behavioral",
+    label: "Behavioural",
+    title: "Leadership · Conflict · Failure · Growth",
+    context: "Behavioural and situational questions covering leadership, conflict resolution, failure, stakeholder management, and personal growth — drawn from your full career.",
+    questions: [
+      { q: "Tell me about yourself in 2 minutes.", diff: "basic", type: "Leadership" },
+      { q: "Why do you want to move from consulting PM to an in-house PM role?", diff: "basic", type: "Leadership" },
+      { q: "What's your biggest strength as a PM?", diff: "basic", type: "Leadership" },
+      { q: "Tell me about a time you disagreed with a stakeholder and how you handled it.", diff: "mid", type: "Leadership" },
+      { q: "Describe a product you shipped that failed. What did you learn?", diff: "mid", type: "Leadership" },
+      { q: "Tell me about a time you had to make a decision with incomplete information.", diff: "mid", type: "Leadership" },
+      { q: "How do you manage your own learning and stay current in product management?", diff: "mid", type: "Leadership" },
+      { q: "Describe your ideal working relationship with an engineering team.", diff: "hard", type: "Leadership" },
+      { q: "Tell me about a time you influenced a team without formal authority.", diff: "hard", type: "Leadership" },
+      { q: "What would your previous manager say is your biggest area for improvement?", diff: "hard", type: "Leadership" },
+      { q: "How do you handle a situation where your data and your intuition conflict?", diff: "hard", type: "Leadership" },
+      { q: "Describe a time you had to say no to a stakeholder's feature request.", diff: "hard", type: "Leadership" },
+      { q: "Why should we hire you over another PM with more domain experience?", diff: "grill", type: "Leadership" },
+      { q: "What's the hardest product problem you've ever faced?", diff: "grill", type: "Leadership" },
+      { q: "Where do you see yourself in 3 years?", diff: "grill", type: "Leadership" },
+      { q: "How do you deal with ambiguity in a role where requirements change frequently?", diff: "grill", type: "Leadership" },
+      { q: "What do you do when a key engineer leaves the team mid-sprint?", diff: "grill", type: "Leadership" },
+      { q: "Tell me about a time you had to build alignment across multiple teams.", diff: "grill", type: "Leadership" },
+      { q: "What's something you believe about product management that most PMs disagree with?", diff: "grill", type: "Leadership" },
+      { q: "How do you handle pressure from above to ship faster than is responsible?", diff: "grill", type: "Leadership" },
+      { q: "Describe a time you went above and beyond your job description.", diff: "grill", type: "Leadership" },
+      { q: "What motivates you as a PM?", diff: "grill", type: "Leadership" },
+      { q: "If you could change one thing about how product management is practiced today, what would it be?", diff: "grill", type: "Leadership" },
+      { q: "How do you approach giving difficult feedback to a team member?", diff: "grill", type: "Leadership" },
+      { q: "What questions do you have for us?", diff: "grill", type: "Leadership" }
+    ],
+    answers: [
+      "Start with the through-line: 'I started as a software engineer at Zebi Data, building blockchain verification systems for 3.5 years. That gave me a deep technical foundation. I then did my MBA at MDI Gurgaon, where I interned at ePayLater as a PM intern. Since then I've been at PwC India as an embedded Product Manager across 6+ D2C and enterprise engagements — including Le Marche, Satya Retail, and PwC's own AI-powered audit platform. I'm now looking for an in-house PM role where I can go deeper in one domain and build for a single product over a longer horizon.' Keep it to 90 seconds. End with why this specific role.",
+      "In consulting, I've had the privilege of working across 6+ products in 2 years — breadth of exposure that's hard to get otherwise. What I've learned is that I'm most energised when I can go deep: understand a user deeply, learn the domain thoroughly, and see the long-term impact of decisions I made 12 months ago. Consulting engagements end at 6-12 months — right when I start to really understand the product and user. In-house, I get to close that loop. I also want to build a team, a culture, and a product that outlasts my tenure — which consulting doesn't enable.",
+      "My genuine strength is being comfortable in the space between technical and business. I can talk to engineers as a peer — I've written production code and understand the trade-offs they're making. And I can talk to business stakeholders in their language — ROI, customer impact, market positioning. Most PMs are strong on one side. The 3.5 years of engineering at Zebi before my MBA means I've lived both, not just observed them. The practical outcome: I write better specs, have fewer engineering conflicts, and earn cross-functional trust faster.",
+      "During the Le Marche engagement, the business stakeholder wanted to add a referral programme to the festive sprint — 4 weeks before Diwali. My position: referral programmes require careful design (incentive structure, fraud prevention, attribution) and rushing it would produce a broken experience that damaged trust. The stakeholder argued urgency — festive is when acquisition cost is lowest. I proposed a middle path: launch a simple 'share this product' feature (no complex incentive engine) in 1 week, and build the full referral programme for the next season. We aligned on this. The simple version launched, drove some sharing, and we built the proper version with 3 months of lead time.",
+      "The loyalty points feature at Le Marche — covered earlier. The key learning beyond what I mentioned: I didn't define success metrics before launching. I had a vague expectation of 'increased repeat purchase' but no specific threshold that would tell me it worked or failed. When engagement was low, I didn't have a clean decision framework for whether to iterate or kill it. Now I define explicit success criteria with time windows before every feature launch: 'If X metric doesn't reach Y by Z date, we kill or significantly pivot.'",
+      "At Satya Retail, we needed to decide whether to build an offline-first order capture capability. I had partial data: we knew field agents had poor connectivity based on qualitative feedback (field rides), but I didn't have quantitative data on what % of working time was offline. Engineering estimated 6 weeks for offline-first vs 2 weeks for a basic online-only app. Decision under uncertainty: I applied the regret minimisation framework. If connectivity turns out to be fine and we built offline-first unnecessarily, we've spent 4 extra weeks but have a more robust product. If connectivity is a serious problem and we didn't build offline-first, we ship something field agents can't use. The downside of not building was much worse than the downside of building unnecessarily. We built offline-first.",
+      "Learning system: I block 45 minutes every Friday for structured reading — currently rotating between product blogs (Lenny's Newsletter, Reforge content), industry reports relevant to my domain, and one book per month. I follow 15-20 PMs on LinkedIn whose thinking I respect and engage with their writing critically. I also practice by building — my current side project (automated job finder) is as much a learning exercise as a portfolio piece. The Upraised PM Fellowship was a deliberate investment in structured PM skill building. And I debrief every significant decision I make — what I decided, what happened, what I'd do differently.",
+      "My ideal engineering relationship: engineers are treated as problem-solving partners, not ticket-executing resources. I write PRDs that give context — what problem we're solving, why now, what success looks like — so engineers can bring their own solutions. I never specify implementation in a PRD. I'm available for questions during the sprint without being in every meeting. I advocate for engineering priorities (tech debt, tooling, architectural decisions) in business conversations. And I celebrate engineering achievements publicly — too many PMs take credit for what engineering built.",
+      "At PwC, I had no direct authority over any engineer — they all reported to the client's engineering organisation. To influence the roadmap, I built credibility through three things: being right about priorities (showing that items I pushed delivered measurable outcomes), being a multiplier for engineering (writing specs that reduced clarification cycles by 40%), and advocating for their interests in business conversations (getting scope reduced when timelines were compressed). The moment I stopped being seen as the person who assigns work and started being seen as the person who removes obstacles and gives engineering the context to do their best work — that's when influence without authority became real.",
+      "My manager would say I sometimes move too fast to execution and don't spend enough time ensuring all stakeholders are aligned before I start building. In the Le Marche engagement, I moved a feature into development before getting explicit sign-off from the operations stakeholder — who then flagged issues during UAT that required rework. I've since built a 'sign-off checklist' into my pre-sprint process: every feature above a medium complexity level requires explicit written confirmation from all impacted stakeholders before engineering begins. It adds 3-5 days to the process but eliminates late-stage rework.",
+      "My approach: be honest about the conflict and investigate the discrepancy. Data tells you what happened; intuition is a hypothesis about why. When they conflict, it usually means the data is measuring the wrong thing or the intuition is pattern-matching to a context that doesn't apply here. Example: my intuition said users would prefer recommendations based on brand affinity (buy more from the same brand). Data showed co-purchase affinity (buy products others bought together) significantly outperformed. My intuition was wrong because Le Marche users were variety-seeking, not brand-loyal — a contextual difference I hadn't accounted for. The data was right.",
+      "The corporate stakeholder at Satya Retail wanted to add a customer chat feature to the retailer app. The feature request was reasonable — retailers wanted to message their field agent directly. My position: this competes with WhatsApp (which retailers and agents already use), adds significant engineering complexity (real-time messaging, push notifications, read receipts), and addresses a workflow problem that's better solved by improving order status visibility (why do retailers message agents? Mostly to check on their order). I presented this analysis, proposed order status as the alternative, and asked for 6 weeks to see if it moved the contact rate metric. It did — by 40%. The chat feature was deprioritised.",
+      "My answer to this question: I bring two things most domain-specific PMs don't have together. First, genuine technical credibility — I've shipped production code, not just worked with engineers. When I say 'this API latency threshold is achievable in 6 weeks', I can back it up. Second, cross-domain pattern recognition — having worked across 6+ products in 2 years, I see patterns that a PM who's been in one domain for 3 years might miss. The specific playbook for festive demand planning that I built at Le Marche came from seeing 3 different clients face the same problem in 3 different ways. Domain experience can be learned in 3-6 months. Engineering credibility and cross-domain pattern recognition take years.",
+      "The hardest problem was the festive UAT crunch at Le Marche — 4 features to release simultaneously in 72 hours before Diwali. Engineering found a critical bug in the corporate gifting checkout 36 hours before go-live. The choice: delay the gifting feature (miss the festive window entirely) or ship with a workaround that required manual ops intervention for corporate orders. I chose the workaround — ops team handled 23 corporate orders manually over 3 days while engineering fixed the root cause. The business result was preserved, the engineering quality issue was addressed post-festive. The learning: have a pre-defined decision framework for go/no-go that you've aligned on with stakeholders before crunch time, not during it.",
+      "In 3 years: I want to be leading a product team — either as a senior PM managing other PMs, or as a Head of Product in a growth-stage company. The specific outcome I'm targeting: shipping a product that has genuine market impact in the e-commerce or AI space, and building a team culture where PMs feel they can take calculated risks and learn from failures without career consequences. I'm also actively building in public through a side project (automated job finder) which I see as both a portfolio piece and a forcing function to keep my 0-to-1 product skills sharp.",
+      "My approach to ambiguity: distinguish between the ambiguity that should be resolved (unclear requirements where the right answer exists and needs to be found) and ambiguity that should be embraced (strategic uncertainty where experimentation is the right response). For the first type: I document the question, identify who has the answer, and resolve it within 24 hours rather than letting it block the sprint. For the second type: I define the smallest experiment that would give us the signal we need, timeframe it (2 weeks), and proceed. The biggest mistake in ambiguity is analysis paralysis — spending 4 weeks figuring out the perfect answer when 2 weeks of experimentation would have given you a better answer.",
+      "Immediate: don't panic or start reassigning their work. First hour: identify what they were working on, what's in-flight, and what's blocked. Document everything they knew that isn't written down — within 24 hours while context is fresh. Next 24 hours: triage in-flight work by criticality. Some items can wait, some need to be redistributed, some need to be de-scoped. Communicate to stakeholders what impact this has on the timeline — early and honestly. Medium term: identify the knowledge gap and fill it (hire, contract, redistribute). The worst outcome: trying to pretend it didn't happen and committing to the same timeline without the same capacity.",
+      "At PwC, the NextGenAudit platform required alignment across 3 value streams (Scoping, Planning, Execution) each with their own PM and engineering team, plus the architecture team, the audit quality team (subject matter experts), and senior leadership. No single person had authority over all of them. I built alignment by: mapping out dependencies between streams explicitly and running a bi-weekly cross-stream sync that I organised and facilitated. I also created a single source of truth for decisions — a shared decisions log that anyone could view. The practice that made the biggest difference: pre-aligning key stakeholders 1:1 before cross-team meetings so the formal meeting was a confirmation, not a negotiation.",
+      "My contrarian view: the best PM skill is knowing when not to do discovery. Discovery is important but it's been fetishised to the point where teams run 8 weeks of user interviews before writing a single line of code — for problems that are obvious. If users tell you checkout is confusing and your funnel shows 40% drop-off at payment, you don't need 3 months of discovery. You need to ship a guest checkout, measure it, and iterate. Over-discovery is a form of procrastination. The skill is calibrating how much discovery the uncertainty level of this specific problem requires — which varies from 'just ship it' to 'we need 6 weeks of ethnographic research'.",
+      "My approach when pushed to ship faster than is responsible: make the risk explicit and visible, not abstract. Not 'we might have quality issues' but 'specifically, if we ship without this security review, we have a known XSS vulnerability in the checkout that could expose user payment data — here's the risk documentation, who is comfortable signing off on that?' Most pressure-to-ship-fast comes from leaders who don't have full visibility of the specific risk. When the risk is specific and documented, most reasonable leaders choose to absorb the timeline hit. If they still insist after full risk disclosure, get written confirmation of the decision — both to protect yourself and to make the accountability clear.",
+      "During the Le Marche festive sprint, our QA engineer fell sick 2 weeks before Diwali with 6 features in UAT. Outside my PM remit, I ran UAT for 3 of the 6 features myself — wrote test cases, executed them, documented bugs. Not glamorous work, but it was what the team needed. Outcome: we shipped all 6 features on time with zero critical post-release defects. The broader point: a PM who is willing to do whatever the team needs — even non-PM work — in a crunch builds a different kind of team trust than one who stays strictly in their lane.",
+      "What motivates me: the moment a user does something they couldn't do before because of something I built. That's the elemental thing. More specifically: I'm energised by problems that sit at the intersection of user behaviour change and business model — checkout optimisation is interesting not just because it's a UX problem but because it directly connects to revenue. And I'm motivated by the compounding nature of product work — a good decision made today shows up in metrics 90 days from now, and that feedback loop, when you've designed it well, is deeply satisfying.",
+      "If I could change one thing: the way PMs communicate uncertainty. Most PMs present roadmaps as if they're commitments — Q3 we will ship X, Q4 we will ship Y. This creates a culture where changing the roadmap feels like failure, and so PMs hold to bad decisions longer than they should. I'd normalise communicating roadmaps as probability distributions — 'we're 90% confident we'll ship checkout improvements in Q3, 70% confident we'll ship the loyalty programme, and we have a hypothesis about gifting that we'll validate in Q2 to decide if it belongs in Q4.' This is honest and actually improves stakeholder trust over time because you're never surprising anyone.",
+      "Approach to difficult feedback: be specific, immediate, and private. 'That presentation was disorganised' is not feedback — 'the stakeholder meeting yesterday ran 20 minutes over because we hadn't defined the decision we needed to make going in — next time, let's align on the decision question before the meeting' is feedback. I use the SBI model: Situation (where/when), Behaviour (what specifically happened), Impact (what was the consequence). I deliver it within 24-48 hours while context is fresh. And I always end with: 'what support do you need from me to do this differently?' — making it a conversation, not a verdict.",
+      "The questions I'd ask: What does success look like for this PM in the first 90 days? What's the biggest product challenge the team is facing right now that this role will help solve? How does this team make prioritisation decisions — who has final say when there's disagreement? What's the engineering team's current velocity and what's the biggest bottleneck to shipping faster? And: what's something about how product is done here that you're trying to change? The last question is the most revealing — it tells you where the real problems are and whether leadership is self-aware about them."
+    ]
+  }
+];
+
+let currentSection = 0;
+let openCards = new Set();
+let activeFilter = 'all';
+
+function init() {
+  renderNav();
+  renderSection(0);
+}
+
+function renderNav() {
+  const nav = document.getElementById('sectionNav');
+  nav.innerHTML = sections.map((s, i) =>
+    `<button class="nav-btn ${i === 0 ? 'active' : ''}" onclick="selectSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function selectSection(idx) {
+  currentSection = idx;
+  openCards.clear();
+  activeFilter = 'all';
+  document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  renderSection(idx);
+}
+
+function renderSection(idx) {
+  const s = sections[idx];
+  const area = document.getElementById('questionArea');
+  const total = s.questions.length;
+
+  let html = `
+    <div class="section-header">
+      <div class="section-context">${s.context}</div>
+      <div class="section-title">${s.title}</div>
+      <div class="section-meta">// ${total} questions · click to reveal ideal answer</div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-info"><span>Answered</span><span id="progText">0 / ${total}</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="setFilter('all')">All</button>
+      <button class="filter-btn" onclick="setFilter('basic')">Basic</button>
+      <button class="filter-btn" onclick="setFilter('mid')">Mid</button>
+      <button class="filter-btn" onclick="setFilter('hard')">Hard</button>
+      <button class="filter-btn" onclick="setFilter('grill')">🔥 Grill</button>
+      <button class="filter-btn" onclick="setFilter('Product')">Product</button>
+      <button class="filter-btn" onclick="setFilter('Technical')">Technical</button>
+      <button class="filter-btn" onclick="setFilter('Analytics')">Analytics</button>
+      <button class="filter-btn" onclick="setFilter('Business')">Business</button>
+      <button class="filter-btn" onclick="setFilter('Leadership')">Leadership</button>
+    </div>
+    <div class="toolbar">
+      <span class="toolbar-left" id="visibleCount">${total} questions visible</span>
+      <button class="expand-all" onclick="toggleAll()">Expand All</button>
+    </div>
+  `;
+
+  const diffMap = { basic: 'Basic', mid: 'Mid', hard: 'Hard', grill: '🔥 Grill' };
+  const diffClass = { basic: 'diff-basic', mid: 'diff-mid', hard: 'diff-hard', grill: 'diff-grill' };
+
+  s.questions.forEach((q, i) => {
+    const answer = s.answers[i] || 'Answer coming soon.';
+    html += `
+      <div class="q-card" id="qcard-${i}" data-diff="${q.diff}" data-type="${q.type}">
+        <div class="q-header" onclick="toggleCard(${i})">
+          <span class="q-num">Q${String(i+1).padStart(2,'0')}</span>
+          <span class="q-text">${q.q}</span>
+          <div class="q-right">
+            <span class="type-tag">${q.type}</span>
+            <span class="diff-tag ${diffClass[q.diff]}">${diffMap[q.diff]}</span>
+            <span class="chevron">▾</span>
+          </div>
+        </div>
+        <div class="answer-panel">
+          <div class="answer-inner">
+            <div class="answer-label">Ideal Answer</div>
+            <div class="answer-text">${formatAnswer(answer)}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  area.innerHTML = html;
+}
+
+function formatAnswer(text) {
+  return text.replace(/(\d+%|\d+×|\d+K\+|\d+M\+|\₹[\d,]+)/g, '<span class="metric">$1</span>');
+}
+
+function toggleCard(i) {
+  const card = document.getElementById(`qcard-${i}`);
+  if (!card || card.classList.contains('hidden')) return;
+  card.classList.toggle('open');
+  if (card.classList.contains('open')) openCards.add(i); else openCards.delete(i);
+  updateProgress();
+}
+
+function toggleAll() {
+  const s = sections[currentSection];
+  const visible = s.questions.map((_, i) => i).filter(i => {
+    const card = document.getElementById(`qcard-${i}`);
+    return card && !card.classList.contains('hidden');
+  });
+  const allOpen = visible.every(i => openCards.has(i));
+  visible.forEach(i => {
+    const card = document.getElementById(`qcard-${i}`);
+    if (allOpen) { card.classList.remove('open'); openCards.delete(i); }
+    else { card.classList.add('open'); openCards.add(i); }
+  });
+  updateProgress();
+}
+
+function setFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const s = sections[currentSection];
+  let visible = 0;
+  s.questions.forEach((q, i) => {
+    const card = document.getElementById(`qcard-${i}`);
+    if (!card) return;
+    const show = filter === 'all' || q.diff === filter || q.type === filter;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('visibleCount').textContent = `${visible} questions visible`;
+  updateProgress();
+}
+
+function updateProgress() {
+  const s = sections[currentSection];
+  const total = s.questions.length;
+  const answered = openCards.size;
+  const pct = (answered / total) * 100;
+  const fill = document.getElementById('progFill');
+  const text = document.getElementById('progText');
+  if (fill) fill.style.width = pct + '%';
+  if (text) text.textContent = `${answered} / ${total}`;
+}
+
+init();
+</script>
+</body>
+</html>
